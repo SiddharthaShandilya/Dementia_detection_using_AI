@@ -1,0 +1,89 @@
+stages:
+  FETCHING_DATA:
+    cmd: python src/stage_01_retrieve_html.py --config config/config.yaml
+    deps:
+      - src/stage_01_retrieve_html.py
+      - src/utils/all_utils.py
+      - config/config.yaml
+      
+      
+    outs:
+      - artifacts/raw_data/Html_Data/
+
+  Extracting and combining data:
+    cmd: python src/stage_02_Extract_combine.py --config config/config.yaml
+    deps:
+      - src/stage_02_Extract_combine.py
+      - src/stage_01_retrieve_html.py
+      - src/utils/all_utils.py
+      - config/config.yaml
+      #- artifacts/data/AQI/aqi2013.csv
+      - artifacts/raw_data/AQI/
+      - artifacts/raw_data/Html_Data
+      - requirements.txt      
+    outs:
+      - artifacts/raw_data/Real-Data/Real_Combine.csv
+
+
+  Exploratory_Data_Analysis:
+    cmd: python src/stage_03_EDA.py --config config/config.yaml
+    deps:
+      - src/stage_03_EDA.py
+      - artifacts/raw_data/Real-Data/Real_Combine.csv
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - requirements.txt
+    outs:
+      - artifacts/reports_dir/graphs_dir/
+      - artifacts/raw_data/Real-Data/Cleaned_Real_Combined_data.csv
+    
+  Splitting_Data:
+    cmd: python src/stage_04_splitting_data.py --config config/config.yaml --params params.yaml
+    deps:
+      - src/stage_04_splitting_data.py
+      - artifacts/raw_data/Real-Data/Cleaned_Real_Combined_data.csv
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - requirements.txt
+      - params.yaml
+    outs:
+      - artifacts/split_data_dir/
+ 
+  TRAINING_AND_GENERATING_MODEL:
+    cmd:  python src/stage_05_xgboost_regression.py  --config config/config.yaml --params params.yaml
+    deps:
+      - src/stage_05_xgboost_regression.py
+      - artifacts/split_data_dir/train_data_dir
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - requirements.txt
+      - params.yaml
+    outs:
+      - artifacts/trained_model/
+      - artifacts/reports_dir/scores.json
+
+
+  TESTING_AND_GENERATING_GRAPH:
+    cmd:  python src/stage_06_model_accuracy_testing.py   --config config/config.yaml 
+    deps:
+      - src/stage_06_model_accuracy_testing.py
+      - artifacts/split_data_dir/test_data_dir
+      - artifacts/trained_model/
+      - src/utils/all_utils.py
+      - config/config.yaml
+      - requirements.txt
+    outs:
+      - artifacts/reports_dir/trained_model_graph_dir
+
+
+  LAUNCHING_WEB_APPLICATION:
+    cmd:  flask run 
+    deps:
+      - app.py
+      - templates/
+      - artifacts/trained_model/
+      - static/
+      - config/config.yaml
+    
+
+  

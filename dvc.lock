@@ -1,0 +1,224 @@
+schema: '2.0'
+stages:
+  retrieve_html:
+    cmd: python src/stage_01_retrieve_html.py --config config/config.yaml
+    deps:
+    - path: config/config.yaml
+      md5: 0048c295aa47a3d5379de7c6112c1005
+      size: 829
+    - path: src/stage_01_retrieve_html.py
+      md5: 31f2e2f799b79572452f5c9c17af7fb7
+      size: 2174
+    - path: src/utils/all_utils.py
+      md5: 5818f5fceb1639ff03aa7a2ff9c36103
+      size: 1883
+    outs:
+    - path: artifacts/raw_data/Html_Data/
+      md5: 944e43a3a3e0f0bbb30bb1a33844a8fb.dir
+      size: 9863848
+      nfiles: 72
+  Extracting and combining data:
+    cmd: python src/stage_02_Extract_combine.py --config config/config.yaml
+    deps:
+    - path: artifacts/raw_data/AQI/
+      md5: a2106931b548e5f3c31848138f32dda6.dir
+      size: 1415058
+      nfiles: 6
+    - path: artifacts/raw_data/Html_Data
+      md5: 5bd1c3b905030f90327bd3c5824360bc.dir
+      size: 9857224
+      nfiles: 72
+    - path: config/config.yaml
+      md5: cc1961d1470840882f88abe9027b7dbf
+      size: 1079
+    - path: requirements.txt
+      md5: 4b6389e576c323553f084c0857f2b8e8
+      size: 1932
+    - path: src/stage_01_retrieve_html.py
+      md5: 82feff9d24d66029d8c5d0f8b0457121
+      size: 2171
+    - path: src/stage_02_Extract_combine.py
+      md5: 53d7e805b8848b767e0fbec7186d5e22
+      size: 6702
+    - path: src/utils/all_utils.py
+      md5: d70718aa28c08fe4ac9933611c24dbca
+      size: 4290
+    outs:
+    - path: artifacts/raw_data/Real-Data/Real_Combine.csv
+      md5: ad9880333f882029f3de0a5ed6bc071e
+      size: 40630
+  FETCHING_DATA:
+    cmd: python src/stage_01_retrieve_html.py --config config/config.yaml
+    deps:
+    - path: config/config.yaml
+      md5: cc1961d1470840882f88abe9027b7dbf
+      size: 1079
+    - path: requirements.txt
+      md5: 4b6389e576c323553f084c0857f2b8e8
+      size: 1932
+    - path: src/stage_01_retrieve_html.py
+      md5: 82feff9d24d66029d8c5d0f8b0457121
+      size: 2171
+    - path: src/utils/all_utils.py
+      md5: d70718aa28c08fe4ac9933611c24dbca
+      size: 4290
+    outs:
+    - path: artifacts/raw_data/Html_Data/
+      md5: 5bd1c3b905030f90327bd3c5824360bc.dir
+      size: 9857224
+      nfiles: 72
+  Exploratory_Data_Analysis:
+    cmd: python src/stage_03_EDA.py --config config/config.yaml
+    deps:
+    - path: artifacts/raw_data/Real-Data/Real_Combine.csv
+      md5: ad9880333f882029f3de0a5ed6bc071e
+      size: 40630
+    - path: config/config.yaml
+      md5: cc1961d1470840882f88abe9027b7dbf
+      size: 1079
+    - path: requirements.txt
+      md5: 4b6389e576c323553f084c0857f2b8e8
+      size: 1932
+    - path: src/stage_03_EDA.py
+      md5: d78675f350beb316bf5b3c93e63d3685
+      size: 4838
+    - path: src/utils/all_utils.py
+      md5: d70718aa28c08fe4ac9933611c24dbca
+      size: 4290
+    outs:
+    - path: artifacts/raw_data/Real-Data/Cleaned_Real_Combined_data.csv
+      md5: 612f973e9d2cc247068c7aa52d5134dd
+      size: 39830
+    - path: artifacts/reports_dir/graphs_dir/
+      md5: fbbd43aebfb6ee2ceaed60a0df02353d.dir
+      size: 35233
+      nfiles: 4
+  Splitting_Data:
+    cmd: python src/stage_04_splitting_data.py --config config/config.yaml --params
+      params.yaml
+    deps:
+    - path: artifacts/raw_data/Real-Data/Cleaned_Real_Combined_data.csv
+      md5: 612f973e9d2cc247068c7aa52d5134dd
+      size: 39830
+    - path: config/config.yaml
+      md5: cc1961d1470840882f88abe9027b7dbf
+      size: 1079
+    - path: params.yaml
+      md5: 484d21d863da5508f47511104f8c16ef
+      size: 183
+    - path: requirements.txt
+      md5: 4b6389e576c323553f084c0857f2b8e8
+      size: 1932
+    - path: src/stage_04_splitting_data.py
+      md5: 60b94e2e5b2e46740268668bf3740d21
+      size: 3536
+    - path: src/utils/all_utils.py
+      md5: d70718aa28c08fe4ac9933611c24dbca
+      size: 4290
+    outs:
+    - path: artifacts/split_data_dir/
+      md5: 8be001a1ad20d7a25849272de0ab20cc.dir
+      size: 39860
+      nfiles: 2
+  GENERATING_MODEL:
+    cmd: python src/stage_05_xgboost_regression.py  --config config/config.yaml --params
+      params.yaml
+    deps:
+    - path: artifacts/split_data_dir/train_data_dir
+      md5: 0aafde6d032013f8775aa005e764409b.dir
+      size: 27951
+      nfiles: 1
+    - path: config/config.yaml
+      md5: 8f2a5fbdbe547b28546eb638603a916a
+      size: 959
+    - path: src/stage_05_xgboost_regression.py
+      md5: bdba27f2a534d70db97f2067064eb1b7
+      size: 4776
+    - path: src/utils/all_utils.py
+      md5: 4e4347814a6fdb05f471b20171a19425
+      size: 3588
+    outs:
+    - path: artifacts/trained_model/
+      md5: dad2d74d1774ddf5e69b5687585bcb5b.dir
+      size: 243077
+      nfiles: 1
+  TRAINING_AND_GENERATING_MODEL:
+    cmd: python src/stage_05_xgboost_regression.py  --config config/config.yaml --params
+      params.yaml
+    deps:
+    - path: artifacts/split_data_dir/train_data_dir
+      md5: 79c8f2594f389390545ff3d135a16472.dir
+      size: 27835
+      nfiles: 1
+    - path: config/config.yaml
+      md5: cc1961d1470840882f88abe9027b7dbf
+      size: 1079
+    - path: params.yaml
+      md5: 484d21d863da5508f47511104f8c16ef
+      size: 183
+    - path: requirements.txt
+      md5: 4b6389e576c323553f084c0857f2b8e8
+      size: 1932
+    - path: src/stage_05_xgboost_regression.py
+      md5: c9716e17ef06c5a6c233b6179e03c339
+      size: 6142
+    - path: src/utils/all_utils.py
+      md5: d70718aa28c08fe4ac9933611c24dbca
+      size: 4290
+    outs:
+    - path: artifacts/reports_dir/scores.json
+      md5: 05a714659633292e91ceb9d480867f7c
+      size: 340
+    - path: artifacts/trained_model/
+      md5: fecf26f5081142f05d07bbd9800d0816.dir
+      size: 791810
+      nfiles: 1
+  TESTING_AND_GENERATING_GRAPH:
+    cmd: python src/stage_06_model_accuracy_testing.py   --config config/config.yaml
+    deps:
+    - path: artifacts/split_data_dir/test_data_dir
+      md5: 199e6efd3464e7e37408ff71c7c6cd62.dir
+      size: 12025
+      nfiles: 1
+    - path: artifacts/trained_model/
+      md5: fecf26f5081142f05d07bbd9800d0816.dir
+      size: 791810
+      nfiles: 1
+    - path: config/config.yaml
+      md5: cc1961d1470840882f88abe9027b7dbf
+      size: 1079
+    - path: requirements.txt
+      md5: 4b6389e576c323553f084c0857f2b8e8
+      size: 1932
+    - path: src/stage_06_model_accuracy_testing.py
+      md5: e95baf610dc116e6923ce2333340c007
+      size: 2703
+    - path: src/utils/all_utils.py
+      md5: d70718aa28c08fe4ac9933611c24dbca
+      size: 4290
+    outs:
+    - path: artifacts/reports_dir/trained_model_graph_dir
+      md5: 0d828bdf0d2bc617f2ed5cb163828016.dir
+      size: 24856
+      nfiles: 1
+  LAUNCHING_WEB_APPLICATION:
+    cmd: flask run
+    deps:
+    - path: app.py
+      md5: 7e1273e7bfe95fbb7c5a5e37a94297bb
+      size: 2470
+    - path: artifacts/trained_model/
+      md5: fecf26f5081142f05d07bbd9800d0816.dir
+      size: 791810
+      nfiles: 1
+    - path: config/config.yaml
+      md5: cc1961d1470840882f88abe9027b7dbf
+      size: 1079
+    - path: static/
+      md5: b773bf35f7ba3e2436a9024ad4c71ac8.dir
+      size: 0
+      nfiles: 1
+    - path: templates/
+      md5: e4214a0091c2d14f8f1ebc2c9dbe7c98.dir
+      size: 1812
+      nfiles: 1

@@ -1,0 +1,40 @@
+# all the locations of different directories will be here
+Data: 
+  site_name: https://en.tutiempo.net/climate
+  city_code: ws-421820.html
+
+
+artifacts: 
+  artifacts_dir: artifacts
+  data_local_dir: raw_data
+  aqi_data_dir: AQI
+  html_data_dir: Html_Data
+  real_data_dir: Real-Data
+  real_data_combined_file: Real_Combine.csv
+  cleaned_real_data_file: Cleaned_Real_Combined_data.csv
+   
+
+
+  split_data: 
+    split_data_dir: split_data_dir
+    train_data_dir: train_data_dir
+    test_data_dir: test_data_dir
+    train_data_file: train_data.csv
+    test_data_file: test_data.csv
+  
+  model: 
+    model_dir: trained_model
+    decision_tree_reg: decision_tree_regression.pk1
+    lasso_reg: la sso_regression.pk1
+    ridge_reg: ridge_regression.pk1
+    linear_reg: linear_regression.pk1
+    random_forest_reg: random_forest_regression.pk1
+    xgboost_reg: xgboost_regression.pk1
+  
+  reports: 
+    reports_dir: reports_dir
+    scores: scores.json
+    
+    graphs:
+      graphs_dir: graphs_dir
+      trained_model_graph_dir: trained_model_graph_dir

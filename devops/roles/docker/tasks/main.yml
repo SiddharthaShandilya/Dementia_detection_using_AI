@@ -1,0 +1,39 @@
+---
+- name: " DOCKER  REPOSITORY"
+  yum_repository: 
+    name: "docker"
+    description: " Docker-repo"
+    baseurl: " https://download.docker.com/linux/centos/7/x86_64/stable"
+    gpgcheck: "no"
+
+- name: checking for docker-ce file on the system
+  command: " rpm -q docker-ce"
+  register: check
+  ignore_errors: True
+
+
+- name: " INSTALLING DOCKER"
+  command: "yum install docker-ce --nobest -y"
+  when: check.rc != 0
+
+- name: "Starting Docker"
+  service:
+    name: "docker"
+    state: started
+    enabled: yes
+
+- name: log into docker hub registry
+  docker_login:
+    email: "your-email@address"
+    username: "a-dockerhub-username"
+    password: "a-dockerhub-password"
+
+  
+- name: Tag and push to docker hub
+  docker_image:
+    name: centos104/aqt_pred
+    repository: centos104/aqt_pred:latest
+    push: yes
+    source: local
+    
+...

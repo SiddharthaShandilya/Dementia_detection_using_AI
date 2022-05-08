@@ -1,0 +1,24 @@
+<<<<<<< HEAD
+---
+- name: Ensure Nginx is at the latest version
+  apt:
+    name: nginx
+    state: latest
+- name: Make sure Nginx is running
+  systemd:
+    state: started
+    name: nginx
+
+=======
+---
+- name: Ensure Nginx is at the latest version
+  apt:
+    name: nginx
+    state: latest
+- name: Make sure Nginx is running
+  systemd:
+    state: started
+    name: nginx
+
+>>>>>>> daa5587a79e9426d683dbcc9a03a5400d5025b51
+...
