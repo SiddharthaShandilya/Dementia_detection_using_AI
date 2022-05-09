@@ -1,3 +1,4 @@
+from tkinter.ttk import Notebook
 from setuptools import setup
 
 with open("README.md", "r", encoding="utf-8") as f:
@@ -13,7 +14,7 @@ setup(
     url="https://github.com/SiddharthaShandilya/air_quality_index_prediction",
     author_email="siddharthashandilya104gmail.com",
     packages=["src"],
-    python_requires=">=3.7",
+    python_requires=">=3.6",
     install_requires=[
         'dvc',
         'pandas',
@@ -22,6 +23,7 @@ setup(
         'matplotlib',
         'flask',
         'xgboost',
-        'bs4'
+        'bs4',
+        
     ]
 )

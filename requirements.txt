@@ -1,103 +1,147 @@
-aiohttp==3.8.0
+aiohttp==3.8.1
 aiohttp-retry==2.4.6
 aiosignal==1.2.0
 appdirs==1.4.4
-async-timeout==4.0.0
+argon2-cffi @ file:///C:/ci/argon2-cffi_1613037829118/work
+async-generator==1.10
+async-timeout==4.0.2
 asynctest==0.13.0
 atpublic==2.3
-attrs==21.2.0
-beautifulsoup4==4.10.0
+attrs @ file:///opt/conda/conda-bld/attrs_1642510447205/work
+backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
+beautifulsoup4==4.11.1
+bleach @ file:///opt/conda/conda-bld/bleach_1641577558959/work
 bs4==0.0.1
 cached-property==1.5.2
-certifi==2021.10.8
-cffi==1.15.0
-charset-normalizer==2.0.7
-click==8.0.3
-colorama==0.4.4
+certifi==2021.5.30
+cffi @ file:///C:/ci/cffi_1625831763871/work
+charset-normalizer==2.0.12
+click==8.0.4
+colorama @ file:///tmp/build/80754af9/colorama_1607707115595/work
 commonmark==0.9.1
 configobj==5.0.6
+contextvars==2.4
 cycler==0.11.0
+dataclasses==0.8
+decorator==4.4.2
+defusedxml @ file:///tmp/build/80754af9/defusedxml_1615228127516/work
 dictdiffer==0.9.0
-diskcache==5.2.1
-distro==1.6.0
-dpath==2.0.5
-dulwich==0.20.26
-dvc==2.8.2
-Flask==2.0.2
-Flask-Cors==3.0.10
+diskcache==5.4.0
+distro==1.7.0
+dpath==2.0.6
+dulwich==0.20.35
+dvc==2.8.1
+entrypoints==0.3
+Flask==2.0.3
 flatten-dict==0.4.2
-flufl.lock==6.0
-fonttools==4.28.2
+flufl.lock==3.2
 frozenlist==1.2.0
-fsspec==2021.10.1
+fsspec==2022.1.0
 ftfy==6.0.3
-funcy==1.16
+funcy==1.17
 future==0.18.2
 gitdb==4.0.9
-GitPython==3.1.24
+GitPython==3.1.18
 grandalf==0.6
 idna==3.3
-importlib-metadata==4.8.1
+idna-ssl==1.1.0
+immutables==0.17
+importlib-metadata==4.8.3
 importlib-resources==5.4.0
+ipykernel @ file:///C:/ci/ipykernel_1596206775157/work/dist/ipykernel-5.3.4-py3-none-any.whl
+ipython @ file:///C:/ci/ipython_1593446240034/work
+ipython-genutils @ file:///tmp/build/80754af9/ipython_genutils_1606773439826/work
+ipywidgets @ file:///tmp/build/80754af9/ipywidgets_1634143127070/work
 itsdangerous==2.0.1
-Jinja2==3.0.2
+jedi==0.17.0
+Jinja2 @ file:///opt/conda/conda-bld/jinja2_1647436528585/work
 joblib==1.1.0
-kiwisolver==1.3.2
-mailchecker==4.0.15
-MarkupSafe==2.0.1
-matplotlib==3.5.0
+jsonschema==3.0.2
+jupyter==1.0.0
+jupyter-client @ file:///opt/conda/conda-bld/jupyter_client_1643638337975/work
+jupyter-console @ file:///opt/conda/conda-bld/jupyter_console_1647002188872/work
+jupyter-core @ file:///C:/ci/jupyter_core_1633402348205/work
+jupyterlab-pygments @ file:///tmp/build/80754af9/jupyterlab_pygments_1601490720602/work
+jupyterlab-widgets @ file:///tmp/build/80754af9/jupyterlab_widgets_1609884341231/work
+kiwisolver==1.3.1
+mailchecker==4.1.16
+MarkupSafe @ file:///C:/ci/markupsafe_1621528313524/work
+matplotlib==3.3.4
+mistune==0.8.4
 multidict==5.2.0
 nanotime==0.5.2
-networkx==2.6.3
-numpy==1.21.4
-packaging==21.2
-pandas==1.3.4
-pathspec==0.9.0
-phonenumbers==8.12.36
+nbclient @ file:///tmp/build/80754af9/nbclient_1614364831625/work
+nbconvert @ file:///C:/ci/nbconvert_1601896775581/work
+nbformat @ file:///tmp/build/80754af9/nbformat_1617383369282/work
+nest-asyncio @ file:///tmp/build/80754af9/nest-asyncio_1613680548246/work
+networkx==2.5.1
+notebook @ file:///C:/ci/notebook_1629205950149/work
+numpy==1.19.5
+packaging @ file:///tmp/build/80754af9/packaging_1637314298585/work
+pandas==1.1.5
+pandocfilters @ file:///opt/conda/conda-bld/pandocfilters_1643405455980/work
+parso @ file:///opt/conda/conda-bld/parso_1641458642106/work
+pathspec==0.8.1
+phonenumbers==8.12.48
+pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
 Pillow==8.4.0
 ply==3.11
-psutil==5.8.0
+prometheus-client @ file:///opt/conda/conda-bld/prometheus_client_1643788673601/work
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1633440160888/work
+psutil==5.9.0
 pyasn1==0.4.8
-pycparser==2.20
+pycparser @ file:///tmp/build/80754af9/pycparser_1636541352034/work
 pydot==1.4.2
-pygit2==1.7.0
-Pygments==2.10.0
+pygit2==1.6.1
+Pygments @ file:///opt/conda/conda-bld/pygments_1644249106324/work
 pygtrie==2.4.2
 pyparsing==2.4.7
-python-benedict==0.24.3
-python-dateutil==2.8.2
-python-fsutil==0.5.0
-python-slugify==5.0.2
-pytz==2021.3
+pyrsistent @ file:///C:/ci/pyrsistent_1600141799440/work
+python-benedict==0.25.1
+python-dateutil @ file:///tmp/build/80754af9/python-dateutil_1626374649649/work
+python-fsutil==0.6.0
+python-slugify==6.1.2
+pytz==2022.1
+pywin32==228
+pywinpty==0.5.7
 PyYAML==6.0
-requests==2.26.0
-rich==10.12.0
-ruamel.yaml==0.17.17
+pyzmq @ file:///C:/ci/pyzmq_1628276569449/work
+qtconsole @ file:///opt/conda/conda-bld/qtconsole_1643819126524/work
+QtPy @ file:///opt/conda/conda-bld/qtpy_1649073884068/work
+requests==2.27.1
+rich==12.4.0
+ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
-scikit-learn==1.0.1
-scipy==1.7.2
+scikit-learn==0.24.2
+scipy==1.5.4
 seaborn==0.11.2
-setuptools-scm==6.3.2
-shortuuid==1.0.1
-shtab==1.4.2
-six==1.16.0
+Send2Trash @ file:///tmp/build/80754af9/send2trash_1632406701022/work
+shortuuid==1.0.9
+shtab==1.5.4
+six @ file:///tmp/build/80754af9/six_1644875935023/work
 smmap==5.0.0
-soupsieve==2.3.1
--e git+https://github.com/SiddharthaShandilya/air_quality_index_prediction.git@41664bf4e84f4d5482f44a0c926c5000f39059f1#egg=src
+soupsieve==2.3.2.post1
+-e git+https://github.com/SiddharthaShandilya/Dementia_detection_using_AI.git@080ff65cdee129f191c75aa246495fba4183fc00#egg=src
 tabulate==0.8.9
+terminado==0.9.4
+testpath @ file:///tmp/build/80754af9/testpath_1624638946665/work
 text-unidecode==1.3
-threadpoolctl==3.0.0
+threadpoolctl==3.1.0
 toml==0.10.2
-tomli==1.2.2
-tqdm==4.62.3
-typing-extensions==3.10.0.2
-urllib3==1.26.7
-voluptuous==0.12.2
-wcwidth==0.2.5
-Werkzeug==2.0.2
+tornado @ file:///C:/ci/tornado_1606942379977/work
+tqdm==4.64.0
+traitlets @ file:///C:/ci/traitlets_1632759765830/work
+typing_extensions==4.1.1
+urllib3==1.26.9
+voluptuous==0.13.1
+wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work
+webencodings==0.5.1
+Werkzeug==2.0.3
+widgetsnbextension==3.5.1
+win-unicode-console==0.5
 wincertstore==0.2
-xgboost==1.5.1
-xmltodict==0.12.0
+xgboost==1.5.2
+xmltodict==0.13.0
 yarl==1.7.2
 zc.lockfile==2.0
 zipp==3.6.0

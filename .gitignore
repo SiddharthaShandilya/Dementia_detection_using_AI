@@ -142,7 +142,7 @@ src.egg-info
 
 # data processign file is shifted to src.utils.all_utils.py file
 
-
+.dvc
 src/stage_02_aqt_data_processing.py
 artifacts/raw_data/Html_Data/
 dummy_code
