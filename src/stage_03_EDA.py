@@ -5,6 +5,11 @@ import argparse, os
 from src.utils.all_utils import create_directory, read_yaml, save_local_df
 from sklearn.ensemble import ExtraTreesRegressor
 
+
+    #-------------------------------------------------------------------------------
+    #                          EDA FUNCTION
+    #-------------------------------------------------------------------------------
+
 def eda(config_path):
 
     config = read_yaml(config_path)
