@@ -9,6 +9,8 @@ import seaborn as sns
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 import xgboost as xgb
 
+from sklearn.metrics import accuracy_score
+
 
 
 def model_testing(model, test_data_file, graphs_dir_path):
@@ -34,6 +36,9 @@ def model_testing(model, test_data_file, graphs_dir_path):
     sns.distplot(y)
     fig.savefig('{}/001_TRAINED_MODEL_TESTING_SNS_DISTPLOT(Y).png'.format(graphs_dir_path))
     print(" # "*20 + "SNS_DISTPLOT(Y).png   created")
+
+    #score =accuracy_score(y,prediction)
+    #print(score)
 
     
 
