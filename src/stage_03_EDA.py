@@ -16,6 +16,8 @@ def eda(config_path):
 
     artifacts_dir = config["artifacts"]['artifacts_dir'] # points to artifacts folder
     data_local_dir = config["artifacts"]['data_local_dir'] # points to data folder inside artifacts
+    raw_data_dir = config["artifacts"]['raw_data_dir'] # points to Real-Data folder(DEMENTIA DATASET) inside artifacts/raw_data
+
     real_data_dir = config["artifacts"]['real_data_dir'] # points to Real-Data folder inside artifacts/data
     real_data_combined_file = config["artifacts"]['real_data_combined_file'] # points to  Real_Combine.csv 
     cleaned_real_data_file = config["artifacts"]['cleaned_real_data_file'] # points to  cleaned_real_data_file.csv 
@@ -25,7 +27,7 @@ def eda(config_path):
     graphs_dir_path = os.path.join(artifacts_dir,reports_dir, graphs_dir)
 
 
-    real_data_combined_file_path = os.path.join(artifacts_dir, data_local_dir, real_data_dir, real_data_combined_file)
+    real_data_combined_file_path = os.path.join(artifacts_dir, data_local_dir, raw_data_dir, real_data_combined_file)
 
     cleaned_real_data_file_path = os.path.join(artifacts_dir, data_local_dir, real_data_dir, cleaned_real_data_file)
 
@@ -34,11 +36,16 @@ def eda(config_path):
     
     df = pd.read_csv(real_data_combined_file_path) 
     print(" FILE LOCATION : {}".format(real_data_combined_file_path))
+    #print(df)
     
-
+    #------------------------------------------------------------------------------- 
+    #                               removing dummy variables    
+    #------------------------------------------------------------------------------- 
+    df = pd.get_dummies(df, columns=['M/F', 'Group','Hand'], drop_first=True)
     df.dropna(inplace= True)
-    X = df.iloc[:,:-1] # removing the last column
-    y = df.iloc[:,-1]
+    #Removing unwanted columnms such as id or Group_Nondemented as Group_demented is already present
+    X = df.drop(labels=['MRI ID','Subject ID','Group_Nondemented','Group_Demented'], axis=1)
+    y = df['Group_Demented']
 
     # finding co- relation
     corr_mat = df.corr()
@@ -100,7 +107,8 @@ def eda(config_path):
     # SAVING THE DATA TO real_data_combined_file_path
     #-------------------------------------------------------------------------------
     print("----"*30)
-    save_local_df(df, cleaned_real_data_file_path)
+    new_df = df = pd.concat((X, y), axis=1)
+    save_local_df(new_df, cleaned_real_data_file_path)
     print(" cleaned_real_data_file_path = {}".format(cleaned_real_data_file_path))
     print("----"*30)
 
