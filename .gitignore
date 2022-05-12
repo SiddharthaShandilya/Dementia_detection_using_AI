@@ -144,7 +144,9 @@ src.egg-info
 
 .dvc
 src/stage_02_aqt_data_processing.py
-artifacts/raw_data/Html_Data/
+artifacts/raw_data/dementia_dataset
+artifacts/raw_data/Real-Data/
+src\stage_x_Extract_combine.py
 dummy_code
 artifacts/split_data_dir
 .dvc/tmp
