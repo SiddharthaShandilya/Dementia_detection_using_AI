@@ -1,4 +1,5 @@
 stages:
+
   FETCHING_DATA:
     cmd: python src/stage_01_retrieve_html.py --config config/config.yaml
     deps:
@@ -6,9 +7,9 @@ stages:
       - src/utils/all_utils.py
       - config/config.yaml
       
-      
     outs:
-      - artifacts/raw_data/dementia_dataset/dementia_dataset.csv
+      - artifacts/Data_archive/dementia_dataset/dementia_dataset.csv
+      - logs/stage_01_running_logs.log
 
   #Extracting and combining data:
   # cmd: python src/stage_02_EDA.py --config config/config.yaml
@@ -18,36 +19,38 @@ stages:
   #    - src/utils/all_utils.py
   #    - config/config.yaml
   #    #- artifacts/data/AQI/aqi2013.csv
-  #    - artifacts/raw_data/AQI/
-  #    - artifacts/raw_data/Html_Data
+  #    - artifacts/Data_archive/AQI/
+  #    - artifacts/Data_archive/Html_Data
   #    - requirements.txt      
   #  outs:
-  #    - artifacts/raw_data/Real-Data/Real_Combine.csv
+  #    - artifacts/Data_archive/Real-Data/Real_Combine.csv
 
 
   Exploratory_Data_Analysis:
     cmd: python src/stage_02_EDA.py --config config/config.yaml
     deps:
       - src/stage_02_EDA.py
-    #  - artifacts/raw_data/Real-Data/Real_Combine.csv
+    #  - artifacts/Data_archive/Real-Data/Real_Combine.csv
       - src/utils/all_utils.py
       - config/config.yaml
       - requirements.txt
     outs:
       - artifacts/reports_dir/graphs_dir/
-      - artifacts/raw_data/Real-Data/Cleaned_Real_Combined_data.csv
+      - artifacts/Data_archive/Real-Data/Cleaned_Real_Combined_data.csv
+      - logs/stage_02_running_logs.log
     
   Splitting_Data:
     cmd: python src/stage_03_splitting_data.py --config config/config.yaml --params params.yaml
     deps:
       - src/stage_03_splitting_data.py
-      - artifacts/raw_data/Real-Data/Cleaned_Real_Combined_data.csv
+      - artifacts/Data_archive/Real-Data/Cleaned_Real_Combined_data.csv
       - src/utils/all_utils.py
       - config/config.yaml
       - requirements.txt
       - params.yaml
     outs:
       - artifacts/split_data_dir/
+      - logs/stage_03_running_logs.log
  
   TRAINING_AND_GENERATING_MODEL:
     cmd:  python src/stage_04_xgboost_regression.py  --config config/config.yaml --params params.yaml
@@ -61,6 +64,7 @@ stages:
     outs:
       - artifacts/trained_model/
       - artifacts/reports_dir/scores.json
+      - logs/stage_04_running_logs.log
 
 
   TESTING_AND_GENERATING_GRAPH:
@@ -74,16 +78,17 @@ stages:
       - requirements.txt
     outs:
       - artifacts/reports_dir/trained_model_graph_dir
+      - logs/stage_05_running_logs.log
 
 
-  #LAUNCHING_WEB_APPLICATION:
-  #  cmd:  flask run 
-  #  deps:
-  #    - app.py
-  #    - templates/
-  #    - artifacts/trained_model/
-  #    - static/
-  #    - config/config.yaml
+  LAUNCHING_WEB_APPLICATION:
+    cmd:  python app.py 
+    deps:
+      - app.py
+      - templates/
+      - artifacts/trained_model/
+      - static/
+      - config/config.yaml
     
 
   
