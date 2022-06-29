@@ -8,46 +8,65 @@ VV = request.form["Average_visibility"]
 V = request.form["Average_wind_speed"]
 VM = request.form["Maximum_wind_speed"]
 -->
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="../static/css/home.css" />
+
+</head>
+
+<body>
+<h2>DETECTION OF DEMENTIA USING AI: </h2>
 <div class="container",class="form-group">
-<h2>AIR QUALITY INDEX PREDICTION: </h2>
+
 <h2>Welcome</h2>
 <h3>Enter the Following parameters :</h3>
 
-<form action="/aqt_predict" method="POST">
+<form action="/dem_predict" method="POST">
 
-<label for="Average_temperature">Average_temperature : </label>
-<input type="text" id="Average_temperature" name="Average_temperature">
+
+
+
+<label for="Age">Age : </label>
+<input type="number" id="Age" name="Age">
 <br>
 
-<label for="Maximum_temperature">Maximum_temperature : </label>
-<input type="text" id="Maximum_temperature" name="Maximum_temperature">
+<label for="EDUC">EDUC : </label>
+<input type="number" id="EDUC" name="EDUC">
+<br>
+<label for="SES">SES : </label>
+<input type="text" id="SES" name="SES">
 <br>
 
-<label for="Minimum_temperature">Minimum_temperature : </label>
-<input type="text" id="Minimum_temperature" name="Minimum_temperature">
+<label for="CDR">CDR : </label>
+<input type="number" id="CDR" name="CDR">
 <br>
 
-<label for="Atmospheric_pressure_at_sea_level">Atmospheric_pressure_at_sea_level : </label>
-<input type="text" id="Atmospheric_pressure_at_sea_level" name="Atmospheric_pressure_at_sea_level">
+<label for="eTIV">eTIV : </label>
+<input type="number" id="eTIV" name="eTIV">
 <br>
 
- <label for="Average_humidity">Average_humidity : </label>
-<input type="text" id="Average_humidity" name="Average_humidity">
+<label for="nWBV">nWBV : </label>
+<input type="text" id="nWBV" name="nWBV">
+<br>
+<label for="ASF">ASF : </label>
+<input type="text" id="ASF" name="ASF">
+<br>
+<label for="MMSE">MMSE : </label>
+<input type="number" id="MMSE" name="MMSE">
 <br>
 
-<label for="Average_visibility">Average_visibility : </label>
-<input type="text" id="Average_visibility" name="Average_visibility">
-<br>
 
-<label for="Average_wind_speed">Average_wind_speed : </label>
-<input type="text" id="Average_wind_speed" name="Average_wind_speed">
-<br>
-
-<label for="Maximum_wind_speed">Maximum_wind_speed : </label>
-<input type="text" id="Maximum_wind_speed" name="Maximum_wind_speed">
-<br>
-
+<label for="Gender">Gender :</label>
+<select name="Gender" id="Gender">
+      <option value="0">MALE</option>
+      <option value="1">FEMALE</option>
 <br>
 
 <input type="submit" value="Submit"><br><br>
 </form>
+
+</div>
+</body>
+</html>

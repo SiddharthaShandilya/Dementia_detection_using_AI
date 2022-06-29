@@ -1,0 +1,91 @@
+h1 {
+    color: rgb(241, 210, 33);
+  }
+  
+  div.scroll {
+    margin: 4px, 4px;
+    padding: 4px;
+    background-color: rgb(230, 254, 255);
+    width: auto;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+  }
+  body {
+    margin: 30;
+    padding: 30;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background: linear-gradient(45deg, rgb(255, 200, 47), rgba(238, 216, 94, 0.774));
+    font-family: "Sansita Swashed", cursive;
+  }
+  .center {
+    position: relative;
+    padding: 50px 100px;
+    background: #fff;
+    border-radius: 50px;
+  }
+  .center h1 {
+    font-size: 2em;
+    border-left: 5px solid rgb(255, 251, 30);
+    padding: 10px;
+    color: #000;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
+    padding-left: 10px;
+  }
+  .center .inputbox {
+    position: relative;
+    width: 400px;
+    height: 50px;
+    margin-bottom: 40px;
+  }
+  .center .inputbox select {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+    border: 2px solid #000;
+    outline: none;
+    background: none;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 1em;
+  }
+  .center .inputbox:last-child {
+    margin-bottom: 0;
+  }
+  .center .inputbox span {
+    position: absolute;
+    top: 14px;
+    left: 20px;
+    font-size: 1em;
+    transition: 0.6s;
+    font-family: sans-serif;
+  }
+  .center .inputbox input:focus ~ span,
+  .center .inputbox input:valid ~ span {
+    transform: translateX(-13px) translateY(-35px);
+    font-size: 1em;
+  }
+  .center .inputbox [type="button"] {
+    width: 100%;
+    height: 80%;
+    align-content: center;
+    background: rgb(10, 10, 10);
+    color: #fff;
+    border: #fff;
+  }
+  .center .inputbox:hover [type="button"] {
+    background: linear-gradient(45deg, rgb(248, 235, 47), rgb(233, 159, 47));
+  }
+  pre{
+      color: black;
+      size: 0vmax;
+      font-style: initial;
+  }
+  
