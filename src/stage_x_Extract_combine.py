@@ -9,7 +9,17 @@ from src.utils.all_utils import avg_data, read_yaml
 import requests
 import sys 
 from bs4 import BeautifulSoup
+import logging
+import time
 
+#-------------------------------------------------------------------------------
+#   Creating a looging with timestamp and regex 
+#-------------------------------------------------------------------------------
+
+logging_str = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(filename=os.path.join(log_dir, 'running_logs.log'), level=logging.INFO, format=logging_str,filemode="a")
 
 #_____________________________________________________________________________
 #
