@@ -7,9 +7,21 @@ import seaborn as sns
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 import xgboost as xgb
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import logging
+import time
 
+#-------------------------------------------------------------------------------
+#   Creating a looging with timestamp and regex 
+#-------------------------------------------------------------------------------
 
+logging_str = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(filename=os.path.join(log_dir, 'stage_04_running_logs.log'), level=logging.INFO, format=logging_str,filemode="a")
 
+#-------------------------------------------------------------------------------
+#   Evaluting Model Metrics
+#-------------------------------------------------------------------------------
 
 def evaluate_metrics(actual_values, predicted_values):
     rmse = np.sqrt(mean_squared_error(actual_values, predicted_values))
@@ -19,13 +31,13 @@ def evaluate_metrics(actual_values, predicted_values):
 
 
 
-def model_traininig(params, train_data_file_path, scores_dir_path):    
+def model_traininig(params, train_data_file_path, scores_filepath):    
         
     #--------------------------------------------------------------------------------------------------------
     #  ARRANGING DATA
     #--------------------------------------------------------------------------------------------------------
     df = pd.read_csv("{}".format(train_data_file_path))
-    print(df.head(10))
+    logging.info(df.head(5))
     #df.dropna(inplace= True)
 
     X = df.iloc[:,:-1] # removing the last column
@@ -49,6 +61,8 @@ def model_traininig(params, train_data_file_path, scores_dir_path):
                'max_depth': max_depth,
                'subsample': subsample,
                'min_child_weight': min_child_weight}
+
+    logging.info(f"Parameter fetched: {params}")
     
     #--------------------------------------------------------------------------------------------------------
     #  MODEL TRAINING WITH RandomizedSearchCV  HYPER-PARAMETER TUNING
@@ -91,9 +105,8 @@ def model_traininig(params, train_data_file_path, scores_dir_path):
 
     save_reports(report=scores, report_path=scores_filepath)
 
-    #print('MAE:', metrics.mean_absolute_error(y_test, prediction))
-    #print('MSE:', metrics.mean_squared_error(y_test, prediction))
-    #print('RMSE:', np.sqrt(metrics.mean_squared_error(y_test, prediction)))
+    logging.info(f"SCORES DATA: {scores}")
+    
 
     error_value(xgb_random, X_test, y_test)
        
@@ -146,10 +159,17 @@ if __name__=="__main__":
     #--------------------------------------------------------------------------------------------------------
     #  PRINTING SCORES AND ERRORS
     #--------------------------------------------------------------------------------------------------------
-    
-    model = model_traininig(params, train_data_file_path, scores_filepath)
-    # saving model
-    save_model(model_dir_path, model, saved_model_filename)
+    try:
+        logging.info("starting STAGE 04 XGBOOST REGRESSION")
+        model = model_traininig(params, train_data_file_path, scores_filepath)
+        logging.info(f"STAGE 04/02 SAVING THE XGBOOST MODEL {saved_model_filename} IN {model_dir_path}")
+        save_model(model_dir_path, model, saved_model_filename)
+        logging.info("Stage 04 completed successfully and all the data is saved in the locals")
+    except Exception as e:
+        logging.info(e)
+        raise e
+
+
 
 
 

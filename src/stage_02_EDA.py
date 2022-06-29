@@ -4,11 +4,21 @@ import seaborn as sns
 import argparse, os
 from src.utils.all_utils import create_directory, read_yaml, save_local_df
 from sklearn.ensemble import ExtraTreesRegressor
+import logging
+
+#-------------------------------------------------------------------------------
+#   Creating a looging with timestamp and regex 
+#-------------------------------------------------------------------------------
+
+logging_str = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(filename=os.path.join(log_dir, 'stage_02_running_logs.log'), level=logging.INFO, format=logging_str,filemode="a")
 
 
-    #-------------------------------------------------------------------------------
-    #                          EDA FUNCTION
-    #-------------------------------------------------------------------------------
+#-------------------------------------------------------------------------------
+#                          EDA FUNCTION
+#-------------------------------------------------------------------------------
 
 def eda(config_path):
 
@@ -31,12 +41,16 @@ def eda(config_path):
 
     cleaned_real_data_file_path = os.path.join(artifacts_dir, data_local_dir, real_data_dir, cleaned_real_data_file)
 
+    #creating directory .\artifacts\data\real_data
+    cleaned_data_path  = os.path.join(artifacts_dir, data_local_dir, real_data_dir)
+    create_directory([cleaned_data_path]) 
+
     #data = eda(real_data_combined_file_path)
-    print(" real_data_combined_file_path = {}".format(real_data_combined_file_path))
+    logging.info(f" real_data_combined_file_path = {format(real_data_combined_file_path)}")
     
     df = pd.read_csv(real_data_combined_file_path) 
-    print(" FILE LOCATION : {}".format(real_data_combined_file_path))
-    #print(df)
+    logging.info(" FILE LOCATION : {}".format(real_data_combined_file_path))
+    #logging.info(df)
     
     #------------------------------------------------------------------------------- 
     #                               removing dummy variables    
@@ -50,7 +64,7 @@ def eda(config_path):
     # finding co- relation
     corr_mat = df.corr()
     top_corr_features = corr_mat.index
-    print("top_corr_features = {}".format(top_corr_features))
+    logging.info("top_corr_features = {}".format(top_corr_features))
 
     
     #-------------------------------------------------------------------------------
@@ -59,7 +73,7 @@ def eda(config_path):
 
     model = ExtraTreesRegressor()
     model.fit(X,y)
-    print("model.feature_importances_ = {}".format(model.feature_importances_))
+    logging.info("model.feature_importances_ = {}".format(model.feature_importances_))
 
     #-------------------------------------------------------------------------------
     #                           UPLOADING GRAPHS   
@@ -72,7 +86,7 @@ def eda(config_path):
     #feat_importance.nlargest(5).plot(kind='barh')
     feat_importance.nlargest(8).plot(kind='barh')
     fig.savefig('{}/feat_importance.png'.format(graphs_dir_path))
-    print(" # "*20 + " feature_importance graph created")
+    logging.info(" # "*20 + " feature_importance graph created")
 
     #-------------------------------------------------------------------------------
     # SNS_PAIRPLOT
@@ -80,7 +94,7 @@ def eda(config_path):
     fig = plt.figure()
     sns.pairplot(df)
     fig.savefig('{}/sns_pairplot.png'.format(graphs_dir_path))
-    print(" # "*20 + " SNS_PAIRPLOT GRAPH created")
+    logging.info(" # "*20 + " SNS_PAIRPLOT GRAPH created")
 
     #-------------------------------------------------------------------------------
     # SNS HEAT_MAP 
@@ -91,7 +105,7 @@ def eda(config_path):
     plt.figure(figsize=(20,20))
     g = sns.heatmap(df[top_corr_features].corr(), annot=True, cmap="YlGnBu")
     fig.savefig('{}/sns_heatmap.png'.format(graphs_dir_path))
-    print(" # "*20 + " SNS HEAT_MAP  GRAPH created")
+    logging.info(" # "*20 + " SNS HEAT_MAP  GRAPH created")
 
     #-------------------------------------------------------------------------------
     # SNS_DISTPLOT
@@ -100,17 +114,18 @@ def eda(config_path):
     fig = plt.figure()
     sns.distplot(y)
     fig.savefig('{}/SNS_DISTPLOT(Y).png'.format(graphs_dir_path))
-    print(" # "*20 + "SNS_DISTPLOT(Y).png   created")
+    logging.info(" # "*20 + "SNS_DISTPLOT(Y).png   created")
 
     #return df 
     #-------------------------------------------------------------------------------
     # SAVING THE DATA TO real_data_combined_file_path
     #-------------------------------------------------------------------------------
-    print("----"*30)
+    logging.info("----"*30)
     new_df = df = pd.concat((X, y), axis=1)
+    
     save_local_df(new_df, cleaned_real_data_file_path)
-    print(" cleaned_real_data_file_path = {}".format(cleaned_real_data_file_path))
-    print("----"*30)
+    logging.info(" cleaned_real_data_file_path = {}".format(cleaned_real_data_file_path))
+    #logging.info("----"*30)
 
 
              
@@ -125,4 +140,10 @@ if __name__=="__main__":
     parsed_args = args.parse_args()
     config_path=parsed_args.config
     
-    eda(config_path=parsed_args.config)
+    try:
+        logging.info("starting StGE 02 EDA DATA")
+        eda(config_path=parsed_args.config)
+        logging.info("Stage 02 completed successfully and all the data is saved in the locals")
+    except Exception as e:
+        logging.info(e)
+        raise e

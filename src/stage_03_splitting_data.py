@@ -3,6 +3,24 @@ import argparse
 import pandas as pd
 import os
 from sklearn.model_selection import train_test_split
+import logging
+
+
+#-------------------------------------------------------------------------------
+#   Creating a looging with timestamp and regex 
+#-------------------------------------------------------------------------------
+
+logging_str = "[%(asctime)s: %(levelname)s: %(module)s]: %(message)s"
+log_dir = "logs"
+os.makedirs(log_dir, exist_ok=True)
+logging.basicConfig(filename=os.path.join(log_dir, 'stage_03_running_logs.log'), level=logging.INFO, format=logging_str,filemode="a")
+
+
+#-------------------------------------------------------------------------------
+#  Splitting Data Function 
+#-------------------------------------------------------------------------------
+
+
 def split_data(config_path, params_path):
 
     config = read_yaml(config_path)
@@ -28,13 +46,13 @@ def split_data(config_path, params_path):
     train_data_file_path = os.path.join(train_data_dir_path, train_data_file)
     test_data_file_path = os.path.join(test_data_dir_path, test_data_file)
 
-    print("#"*20 + " real_data_combined_file_path " + "#"*20)
-    print(" real_data_dir_path = {}".format(real_data_dir_path))
-    print(" real_data_combined_file_path = {}".format(real_data_combined_file_path))
+    logging.info("#"*20 + " real_data_combined_file_path " + "#"*20)
+    logging.info(" real_data_dir_path = {}".format(real_data_dir_path))
+    logging.info(" real_data_combined_file_path = {}".format(real_data_combined_file_path))
 
-    print(" train_data_file_path = {}".format(train_data_file_path))
-    print(" test_data_file_path = {}".format(test_data_file_path))
-    print("#"*20 + " real_data_combined_file_path " + "#"*20)
+    logging.info(" train_data_file_path = {}".format(train_data_file_path))
+    logging.info(" test_data_file_path = {}".format(test_data_file_path))
+    logging.info("#"*20 + " real_data_combined_file_path " + "#"*20)
 
     if not os.path.exists("{}".format(train_data_file_path)):                           
         create_directory([os.path.join(artifacts_dir, split_data_dir, train_data_dir)])
@@ -60,7 +78,7 @@ def split_data(config_path, params_path):
     
     for data, data_path in (train, train_data_file_path), (test, test_data_file_path):
         save_local_df(data, data_path)
-        #print( " {} created".format(data_path))
+        #logging.info( " {} created".format(data_path))
 
     
 
@@ -73,5 +91,11 @@ if __name__=="__main__":
     parsed_args = args.parse_args()
     config_path=parsed_args.config
     
-    split_data(config_path=parsed_args.config, params_path=parsed_args.params)
+    try:
+        logging.info("starting STAGE 03 SPLITTING DATA")
+        split_data(config_path=parsed_args.config, params_path=parsed_args.params)
+        logging.info("Stage 03 completed successfully and all the data is saved in the locals")
+    except Exception as e:
+        logging.info(e)
+        raise e
     
