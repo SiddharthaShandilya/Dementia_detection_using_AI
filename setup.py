@@ -14,7 +14,7 @@ setup(
     url="https://github.com/SiddharthaShandilya/air_quality_index_prediction",
     author_email="siddharthashandilya104gmail.com",
     packages=["src"],
-    python_requires=">=3.6",
+    python_requires=">=3.7",
     install_requires=[
         'dvc',
         'pandas',
@@ -24,6 +24,7 @@ setup(
         'flask',
         'xgboost',
         'bs4',
+        'numpy'
         
     ]
 )
