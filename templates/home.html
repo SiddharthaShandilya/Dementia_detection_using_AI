@@ -26,6 +26,13 @@ VM = request.form["Maximum_wind_speed"]
 <form action="/dem_predict" method="POST">
 
 
+<label for="visit">visit : </label>
+<input type="number" id="visit" name="visit">
+<br>
+
+<label for="mr_delay">mr_delay : </label>
+<input type="number" id="mr_delay" name="mr_delay">
+<br>
 
 
 <label for="Age">Age : </label>
@@ -40,7 +47,7 @@ VM = request.form["Maximum_wind_speed"]
 <br>
 
 <label for="CDR">CDR : </label>
-<input type="number" id="CDR" name="CDR">
+<input type="text" id="CDR" name="CDR">
 <br>
 
 <label for="eTIV">eTIV : </label>
