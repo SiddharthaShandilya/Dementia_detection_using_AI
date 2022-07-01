@@ -60,7 +60,8 @@ def aqt_predict():
     if request.method == "POST":
         
        
-        const = float(1)
+        visit = float(request.form["visit"])
+        mr_delay = float(request.form["mr_delay"])
         Age = float(request.form["Age"])
         EDUC = float(request.form["EDUC"])
         SES = float(request.form["SES"])
@@ -72,10 +73,10 @@ def aqt_predict():
         MMSE   = float(request.form["MMSE"])
 
 
-        #data = [1, 1 , nWBV, eTIV, EDUC, gender, Age, SES, CDR]
+        data = [visit, mr_delay ,Age , EDUC, SES, MMSE, CDR,eTIV, nWBV, ASF, gender]
 
         #data = [const, gender, Age,  EDUC , SES  ,eTIV ,    nWBV , ASF , MMSE , CDR]
-        data = [const, EDUC, SES, nWBV, ASF, MMSE, CDR]
+        #data = [const, EDUC, SES, nWBV, ASF, MMSE, CDR]
 
         for i in data:
             print(type(i))
@@ -91,14 +92,19 @@ def aqt_predict():
 
         output = model.predict(Xnew)
         print("ouyput",output)
-        y_pred=[0 if i<0.5 else 1 for i in output]
+        y_pred=[0 if i<0.6 else 1 for i in output]
         print("ouyput",y_pred)
-        if y_pred:
-            return " person in not demetned"
-        else:
+        #out = " "
+        #'''
+        if (y_pred[0] == 1):
+            print("True == ",y_pred)
             return " Person is demented and need medical attention"
-
         
+        print("False == ",y_pred)
+        return " person in not demetned"
+        
+        #'''
+       
         #return "<p>model fetched from \t\t {}</p>" .format(output)
 
 
