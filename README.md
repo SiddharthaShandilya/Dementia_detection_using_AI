@@ -57,13 +57,13 @@ Man pages have been added. Checkout `man colorls`.
 2. Copy the github url from the repository : 
 
  ```bash
- https://github.com/SiddharthaShandilya/air_quality_index_prediction.git
+ https://github.com/SiddharthaShandilya/Dementia_detection_using_AI.git
  ```
 
 3. Select a Directory in local system and use 
 
   ```bash 
-  git clone https://github.com/SiddharthaShandilya/air_quality_index_prediction.git           
+  git clone https://github.com/SiddharthaShandilya/Dementia_detection_using_AI.git          
   ```
 
     *Note for `git clone command`  Please make sure that you have proper internet connection. *

@@ -150,5 +150,10 @@ dummy_code
 .dvc/tmp
 flask/__pycache__
 src/stage_x_Extract_combine.py
+<<<<<<< HEAD
 .dvc/
 logistic_regression.ipynb
+=======
+
+dvc.lock
+>>>>>>> 922787fc9c4243d7b78bbd1cda8b25e88cf9e055
