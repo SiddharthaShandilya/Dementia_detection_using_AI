@@ -142,7 +142,7 @@ src.egg-info
 
 # data processign file is shifted to src.utils.all_utils.py file
 
-.dvc
+!.dvc
 src/stage_02_aqt_data_processing.py
 
 src/stage_x_Extract_combine.py
@@ -151,7 +151,7 @@ dummy_code
 flask/__pycache__
 src/stage_x_Extract_combine.py
 <<<<<<< HEAD
-!.dvc
+
 logistic_regression.ipynb
 =======
 
