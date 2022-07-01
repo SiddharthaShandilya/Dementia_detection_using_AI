@@ -151,7 +151,7 @@ dummy_code
 flask/__pycache__
 src/stage_x_Extract_combine.py
 <<<<<<< HEAD
-.dvc/
+!.dvc
 logistic_regression.ipynb
 =======
 
