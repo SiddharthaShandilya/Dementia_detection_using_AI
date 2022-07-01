@@ -74,11 +74,24 @@ Man pages have been added. Checkout `man colorls`.
 ```bash
     python3 -m venv new-env 
 ```
+In case for anaconda we can use below commands
+```bash
+    conda create --prefix ./env
+    conda activate ./env
+```
 
 5. Activate the virtual env: 👉 [(click Here)](https://www.programshelp.com/help/python/activate_virtual_environment_python_windows_10.html)
+
 6. Install all the libraries for the application.
 ```bash
 pip3 install -r requirements.txt
+```
+7. Once the environment is created use following commands to start
+```bash
+git init
+dvc init
+dvc dag
+dvc repro
 ```
 
 6. Have a look at [Recommended configurations](#recommended-configurations) and [Custom configurations](#custom-configurations).
@@ -87,87 +100,48 @@ pip3 install -r requirements.txt
 </br></br>
 
 
-# Recommended configurations
-
-[(Back to top)](#table-of-contents)
-
-<!--
-
-1. To add some short command (say, `lc`) with some flag options (say, `-l`, `-A`, `--sd`) by default, add this to your shell configuration file (`~/.bashrc`, `~/.zshrc`, etc.) :
-    ```sh
-    alias lc='colorls -lA --sd'
-    ```
-
-2. For changing the icon(s) to other unicode icons of choice (select icons from [here](https://nerdfonts.com/)), change the YAML files in a text editor of your choice (say, `subl`)
-
-    ```sh
-    subl $(dirname $(gem which colorls))/yaml
-    ```
-
-</br></br>
--->
-<!--
-
 # Custom configurations
 
 [(Back to top)](#table-of-contents)
 
-<!--
-You can overwrite the existing icons and colors mapping by copying the yaml files from `$(dirname $(gem which colorls))/yaml` into `~/.config/colorls`, and changing them.
-
-- To overwrite color mapping :
-
-  Please have a look at the [list of supported color names](https://github.com/sickill/rainbow#color-list). You may also use a color hex code as long as it is quoted within the YAML file and prefaced with a `#` symbol.
-
-  Let's say that you're using the dark color scheme and would like to change the color of untracked file (`??`) in the `--git-status` flag to yellow. Copy the defaut `dark_colors.yaml` and change it.
-
-  ```sh
-  cp $(dirname $(gem which colorls))/yaml/dark_colors.yaml ~/.config/colorls/dark_colors.yaml
-  ```
-
-  In the `~/.config/colorls/dark_colors.yaml` file, change the color set for `untracked` from `darkorange` to `yellow`, and save the change.
-
-  ```
-  untracked: yellow
-  ```
-
-  Or, using hex color codes:
-
-  ```
-  untracked: '#FFFF00'
-  ```
-
-- To overwrite icon mapping :
-
-  Please have a look at the [list of supported icons](https://nerdfonts.com/). Let's say you want to add an icon for swift files. Copy the default `files.yaml` and change it.
-
-  ```sh
-  cp $(dirname $(gem which colorls))/yaml/files.yaml ~/.config/colorls/files.yaml`
-  ```
-
-  In the `~/.config/colorls/files.yaml` file, add a new icon / change an existing icon, and save the change.
-
-
-  ```
-  swift: "\uF179"
-  ```
-
-- User contributed alias configurations :
-
-  - [@rjhilgefort](https://gist.github.com/rjhilgefort/51ea47dd91bcd90cd6d9b3b199188c16)
-
+1. In the project we are running flask application by using python3  which might not work so try below mentioned commands:
+    ```sh
+    python/python3 app.py
+    ```
+    or
+    ```sh
+    flask run 
+    ```
 
 </br></br>
+
+
+
+# Recommended configurations
+
+[(Back to top)](#table-of-contents)
+
+
+You can overwrite the existing code according to your needs and changing them.
+
+- Note :
+
+1. Please have a look at the dvc.yaml file , Here i have used python3.7 version so if your console takes python3 to run python make sure to change all the commands in dvc.yaml file.
+
+<br>
+
+2. If any change regarding the file are concerned you are advised to change the config file in location ' /config/config.yaml '. For eg.. the location of dataset in thsi code is of a lcoal storage ../dementia_dataset, this might not be in you case so change the code accordingly.
+
+ 
 
 # Updating
 
 [(Back to top)](#table-of-contents)
 
-Want to update to the latest version of `chat_app`?
-
-<!--
+Want to update to the latest version of `dementia_detection`? make the required change and give us a pull request
+ 
 ```sh
-gem update colorls
+git push https://github.com/SiddharthaShandilya/Dementia_detection_using_AI.git
 ```
 
 
@@ -178,11 +152,11 @@ gem update colorls
 
 [(Back to top)](#table-of-contents)
 
-Want to uninstall and revert back to the old style? No issues (sob). Please feel free to open an issue regarding how we can enhance `chat_app`.
+Want to uninstall ? No issues (sob). Please feel free to open an issue regarding how we can enhance `dementia_detection app`.
 
-<!--
+
 ```sh
-gem uninstall colorls
+ctrl + A, ctrl + shift + delete
 ```
 
 
@@ -200,10 +174,8 @@ Your contributions are always welcome! Please have a look at the [contribution g
 # Future Scope
 [(Back to top)](#table-of-contents)
 
-Adding Voice chat app will make it more user friendly
+we are currently working on the UI part as well as trying to make section in the web-app to upload a MRI scan to locate demtia. Feel free to improve the code or share some innovative ideas.
 
 
 
 
-
--->
