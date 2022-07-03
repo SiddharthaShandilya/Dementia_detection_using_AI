@@ -9,6 +9,9 @@ import time
 def retrieve_html(config_path, site_name):
     '''
     retrieve_html allows user to load the given remote dataset rpository in the desired local directory
+    
+    Parameters
+    ----------
     INPUT : Config_path : location of the config.yaml file 
             site_name : name of the dataset remote repository
     OUTPUT : the dataset is stored in the local storage

@@ -16,6 +16,9 @@ import time
 def read_yaml(path_to_yaml: str) -> dict:
     '''
     read_yaml takes String as input and gives Dictionary as output
+
+    Parameters
+    ----------
     INPUT : path_to_yaml || String
     OUTPUT : content || Dictionary
     '''
@@ -30,6 +33,9 @@ def read_yaml(path_to_yaml: str) -> dict:
 def error_value(model, X_test, y_test):
     '''
     error_value will take the trained model as well as the X_test and y_test values and find thir MAE, MSE, RMSE
+    
+    Parameters
+    ----------
     Input : Model : Trained model, 
             X_test : Dataset,
             y_test : Dataset
@@ -47,6 +53,9 @@ def error_value(model, X_test, y_test):
 def create_directory(dirs: list):
     '''
     Create_directory will allow the user to create directory 
+    
+    Parameters
+    ----------
     Input : Take list as input containing Directories name
     Output : The mentioned directories will be created
     '''
@@ -61,6 +70,9 @@ def create_directory(dirs: list):
 def save_local_df(data, data_path, index_status=False):
     '''
     save_local_df will allow the user to save their data to their csv file in their designated location mentioned in data_path
+    
+    Parameters
+    ----------
     INPUT : data,
             data_path(location of data to be stored)
     Output : New data is saved in the mentioned location in csv format
@@ -75,6 +87,9 @@ def save_local_df(data, data_path, index_status=False):
 def save_reports(report: dict, report_path: str, indentation=4):
     '''
     save_reports allows users to save their reports at their designated location as mentioned in the report_path variable
+    
+    Parameters
+    ----------
     INPUT : report : varible storing the reports  || DICT,
             report_path : location to store the reports || STRING,
             indentation :allows better readibility
@@ -89,6 +104,9 @@ def save_reports(report: dict, report_path: str, indentation=4):
 def fetch_reports(report_path: str):
     '''
     fetch_report allows users to fetch report saved at the location mentioned in the report_path variable
+    
+    Parameters
+    ----------
     INPUT : report_path : STRING 
     OUTPUT : report : JSON format 
     '''
@@ -104,6 +122,9 @@ def fetch_reports(report_path: str):
 def save_model(model_dir_path: list, model, model_filename):
     '''
     save_model allows user to save a trained model to a given location
+    
+    Parameters
+    ----------
     INPUT : model_dir_path : containg list of directories/location, 
             model : trained model, 
             model_filename: Name of the model
@@ -121,6 +142,9 @@ def save_model(model_dir_path: list, model, model_filename):
 def load_model(model_file_path):
     '''
     load_model allows user to load a pretrained model stored locally in the mentioned location
+    
+    Parameters
+    ----------
     INPUT : location of the pretrained model
     OUTPUT : the pretrained model will be loaded
     '''
@@ -135,6 +159,9 @@ def load_model(model_file_path):
 def get_timestamp(name):
     '''
     it will create a unique name using the timestamp 
+
+    Parameters
+    ----------
     INPUT : Name || String
     OUTPUT : unique_name || String
     '''
