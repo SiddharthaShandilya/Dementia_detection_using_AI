@@ -1,17 +1,7 @@
 h1 {
     color: rgb(241, 210, 33);
   }
-  
-  div.scroll {
-    margin: 4px, 4px;
-    padding: 4px;
-    background-color: rgb(230, 254, 255);
-    width: auto;
-    height: 600px;
-    overflow-x: hidden;
-    overflow-y: auto;
-    text-align: justify;
-  }
+
   body {
     margin: 30;
     padding: 30;
