@@ -28,9 +28,11 @@ Here are the screenshots of working example on an AWS Linux Instance.
 - [Recommended configurations](#recommended-configurations)
 - [Custom configurations](#custom-configurations)
 - [Updating](#updating)
+- [Output](#output)
 - [Uninstallation](#uninstallation)
 - [Contributing](#contributing)
 - [Future Scope](#future-scope)
+
 
 </br></br>
 
@@ -147,6 +149,17 @@ git push https://github.com/SiddharthaShandilya/Dementia_detection_using_AI.git
 
 
 </br></br>
+
+# Output
+[(Back to top)](#table-of-contents)
+
+Below is some screenshot of the web application when it is successfully launched.
+
+![web_UI](https://github.com/SiddharthaShandilya/Dementia_detection_using_AI/blob/master/screen_shots/test_web1_front.png)
+![web_UI_backend_output](https://github.com/SiddharthaShandilya/Dementia_detection_using_AI/blob/master/screen_shots/test_web1_back.png)
+
+
+<br></br>
 
 # Uninstallation
 
