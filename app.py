@@ -1,3 +1,5 @@
+from __future__ import division, print_function
+
 from flask import Flask, render_template, request
 from flask_cors import cross_origin
 from src.utils.all_utils import read_yaml, load_model
@@ -7,6 +9,21 @@ import numpy as np
 import pickle
 
 
+# coding=utf-8
+import sys
+import glob
+import re
+import numpy as np
+
+# Keras
+from keras.applications.imagenet_utils import preprocess_input, decode_predictions
+from keras.models import load_model as local_deep_model
+from keras.preprocessing import image
+
+# Flask utils
+from flask import Flask, redirect, url_for, request, render_template
+from werkzeug.utils import secure_filename
+from gevent.pywsgi import WSGIServer
 
 #-------------------------------------------------------------------------------
 #   loading model from local
@@ -20,14 +37,16 @@ model_dir = config["artifacts"]["model"]["model_dir"]
 reports_dir = config["artifacts"]["reports"]["reports_dir"]
 
 scores_filename = config["artifacts"]["reports"]["scores"]
-#saved_model_filename = config["artifacts"]["model"]["finalized_model"]
+saved_deep_model_filename = config["artifacts"]["model"]["finalized_model"]
 #saved_model_filename = config["artifacts"]["model"]["logistic_reg_model"]
 saved_model_filename = config["artifacts"]["model"]["xgboost_reg"]
 
 saved_model_file_path = os.path.join(artifacts_dir, model_dir, saved_model_filename)
+saved_deep_model_file_path = os.path.join(artifacts_dir, model_dir, saved_deep_model_filename)
 scores_file_path = os.path.join(artifacts_dir, reports_dir, scores_filename)
 
 model = load_model(saved_model_file_path)
+
 print(" model loaded")
 
 
@@ -49,7 +68,7 @@ def fetch_reports(report_path: str):
 
 
 #-------------------------------------------------------------------------------
-# DMT_PREDICT
+# DMT_ML_PREDICT
 #-------------------------------------------------------------------------------
 
 @app.route("/dem_predict",methods = ["GET", "POST"])
@@ -108,6 +127,59 @@ def aqt_predict():
         #return "<p>model fetched from \t\t {}</p>" .format(output)
 
 
+
+
+#-------------------------------------------------------------------------------
+# DMT_Deep_learning_PREDICT
+#-------------------------------------------------------------------------------
+deep_model = "../finalized_model_ml.sav"
+print(' deep_learning Model loaded. Start serving...')
+
+print('deep_model loaded. Check http://127.0.0.1:5000/')
+
+
+def model_predict(img_path, deep_model):
+    img = image.load_img(img_path, target_size=(150, 150))
+
+    # Preprocessing the image
+    x = image.img_to_array(img)
+    # x = np.true_divide(x, 255)
+    x = np.expand_dims(x, axis=0)
+
+    # Be careful how your trained model deals with the input
+    # otherwise, it won't make correct prediction!
+    x = preprocess_input(x, mode='caffe')
+
+    preds = deep_model.predict(x)
+    return preds
+
+
+@app.route('/predict', methods=['GET', 'POST'])
+def upload():
+    if request.method == 'POST':
+        # Get the file from post request
+        f = request.files['file']
+
+        # Save the file to ./uploads
+        basepath = os.path.dirname(__file__)
+        file_path = os.path.join(
+            basepath, 'uploads', secure_filename(f.filename))
+        f.save(file_path)
+
+        # Make prediction
+        preds = model_predict(file_path, deep_model)
+
+        # Process your result for human
+        # pred_class = preds.argmax(axis=-1)            # Simple argmax
+        pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
+        result = str(pred_class[0][0][1])               # Convert to string
+        return result
+    return None
+
+
+###############################################################################################################
+
+
 @app.route("/")
 @cross_origin()
 def home():
@@ -116,4 +188,3 @@ def home():
 if __name__ == "__main__":
     #aqt_predict()
     app.run(debug = True, host='127.0.0.1', port=5000)
-    
