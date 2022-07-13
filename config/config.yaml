@@ -1,19 +1,43 @@
 # all the locations of different directories will be here
 Data:
   local_source_download_path: ../dementia_dataset
-  site_name: https://storage.googleapis.com/kaggle-data-sets/1519608/2509179/bundle/archive.zip?X-Goog-Algorithm=GOOG4-RSA-SHA256&X-Goog-Credential=gcp-kaggle-com%40kaggle-161607.iam.gserviceaccount.com%2F20220508%2Fauto%2Fstorage%2Fgoog4_request&X-Goog-Date=20220508T161634Z&X-Goog-Expires=259199&X-Goog-SignedHeaders=host&X-Goog-Signature=02c5a97a010e931c39cc82f6ae71984e05e9ab0b387c70257995bc5b46ba74b280e19fbf3d9d11a4ceebff313e1188c0962d102d4fb4f9d8e33c642cc8e621c7f72c53049b2832f74671ebb2bc56745244f5e4f7ccaff731552f48345ff90af3eb2e1533a0c53b03b4d19468dc1a83daa6a99362c66efc959e41ce777040aa260311149ee52f88adb7e406d73ac3a8f40cb41fad683047db06d2f70a20d0d7aa9a4298a53f159db8e7cbedac9c42c0f8b9d40052f386063ab4eda64c9231c1cbb938a93171f7d6271ec5feadbd19590adc440cf18503c707f16aef73585140f7e1f37cfb33417fe5d4eae2b8133cb7b7712b216f0715256a91bf4a8d0c75a147
+
   #city_code: ws-421820.html
-  
+  #alzheimers_mri_local_source: ../Alzheimer_s Dataset
+  #alzheimers_mri_remote_source: https://drive.google.com/drive/folders/11on8iRLolH6uPQ4KDwn7a-WdguOtnNR8?usp=sharing
+
+  alzheimers_mri_source_download_dirs:
+    - ../Alzheimer_s Dataset/train/MildDemented
+    - ../Alzheimer_s Dataset/train/ModerateDemented
+    - ../Alzheimer_s Dataset/train/NonDemented
+    - ../Alzheimer_s Dataset/train/VeryMildDemented
+
+    - ../Alzheimer_s Dataset/test/MildDemented
+    - ../Alzheimer_s Dataset/test/ModerateDemented
+    - ../Alzheimer_s Dataset/test/NonDemented
+    - ../Alzheimer_s Dataset/test/VeryMildDemented    
+
+  alzheimers_mri_local_data_dirs:
+    - artifacts/Data_archive/alzheimers_dataset/train/MildDemented
+    - artifacts/Data_archive/alzheimers_dataset/train/ModerateDemented
+    - artifacts/Data_archive/alzheimers_dataset/train/NonDemented
+    - artifacts/Data_archive/alzheimers_dataset/train/VeryMildDemented
+
+    - artifacts/Data_archive/alzheimers_dataset/test/MildDemented
+    - artifacts/Data_archive/alzheimers_dataset/test/ModerateDemented
+    - artifacts/Data_archive/alzheimers_dataset/test/NonDemented
+    - artifacts/Data_archive/alzheimers_dataset/test/VeryMildDemented    
+
 
 artifacts: 
   artifacts_dir: artifacts
   data_local_dir: Data_archive
   raw_data_dir: dementia_dataset
-  #aqi_data_dir: AQI
-  #html_data_dir: Html_Data
+  alzheimers_mri_data_dir: alzheimers_dataset
   real_data_dir: Real-Data
   real_data_combined_file: dementia_dataset.csv
   cleaned_real_data_file: Cleaned_Real_Combined_data.csv
+  
    
 
   split_data: 
@@ -43,3 +67,6 @@ artifacts:
     graphs:
       graphs_dir: graphs_dir
       trained_model_graph_dir: trained_model_graph_dir
+
+web_app:
+  upload_folder: uploads  #here we will upload a the image for DL model prediction
