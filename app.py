@@ -6,19 +6,17 @@ from src.utils.all_utils import read_yaml, load_model
 import json
 import os
 import numpy as np
-import pickle
-
 
 # coding=utf-8
-import sys
-import glob
-import re
-import numpy as np
 
+import numpy as np
+import tensorflow as tf
 # Keras
-from keras.applications.imagenet_utils import preprocess_input, decode_predictions
-from keras.models import load_model as local_deep_model
-from keras.preprocessing import image
+from tensorflow.keras.applications.imagenet_utils import preprocess_input, decode_predictions
+from tensorflow.keras.models import load_model as load_deep_model
+from tensorflow.keras.preprocessing import image
+
+import numpy as np
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
@@ -66,7 +64,7 @@ def fetch_reports(report_path: str):
     print(report)
     return report
 
-
+'''
 #-------------------------------------------------------------------------------
 # DMT_ML_PREDICT
 #-------------------------------------------------------------------------------
@@ -113,8 +111,7 @@ def aqt_predict():
         print("ouyput",output)
         y_pred=[0 if i<0.6 else 1 for i in output]
         print("ouyput",y_pred)
-        #out = " "
-        #'''
+        
         if (y_pred[0] == 1):
             print("True == ",y_pred)
             return " Person is demented and need medical attention"
@@ -122,9 +119,7 @@ def aqt_predict():
         print("False == ",y_pred)
         return " person in not demetned"
         
-        #'''
-       
-        #return "<p>model fetched from \t\t {}</p>" .format(output)
+'''
 
 
 
@@ -132,26 +127,27 @@ def aqt_predict():
 #-------------------------------------------------------------------------------
 # DMT_Deep_learning_PREDICT
 #-------------------------------------------------------------------------------
-deep_model = "../finalized_model_ml.sav"
+deep_model = load_deep_model("../Alzheimer_model_latest.h5")
 print(' deep_learning Model loaded. Start serving...')
 
 print('deep_model loaded. Check http://127.0.0.1:5000/')
 
 
-def model_predict(img_path, deep_model):
+def model_predict(img_path, load_model):
     img = image.load_img(img_path, target_size=(150, 150))
-
+    print(type(img))
     # Preprocessing the image
     x = image.img_to_array(img)
     # x = np.true_divide(x, 255)
     x = np.expand_dims(x, axis=0)
-
+    #print(x.shape())
     # Be careful how your trained model deals with the input
     # otherwise, it won't make correct prediction!
-    x = preprocess_input(x, mode='caffe')
+    #x = preprocess_input(x, mode='caffe')
 
-    preds = deep_model.predict(x)
+    preds = load_model.predict(x, batch_size=None, verbose=0, steps=None, callbacks=None)
     return preds
+
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -167,10 +163,12 @@ def upload():
         f.save(file_path)
 
         # Make prediction
+        IMAGE_SIZE = [150,150]
         preds = model_predict(file_path, deep_model)
 
         # Process your result for human
         # pred_class = preds.argmax(axis=-1)            # Simple argmax
+        test_ds = tf.keras.preprocessing.image_dataset_from_directory("uploads", image_size=IMAGE_SIZE,)
         pred_class = decode_predictions(preds, top=1)   # ImageNet Decode
         result = str(pred_class[0][0][1])               # Convert to string
         return result
