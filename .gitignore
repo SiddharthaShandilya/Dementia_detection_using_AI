@@ -150,6 +150,7 @@ dummy_code
 .dvc/tmp
 flask/__pycache__
 src/stage_x_Extract_combine.py
+!artifacts\trained_model\xgboost_regression.pk1
 <<<<<<< HEAD
 
 logistic_regression.ipynb
@@ -157,3 +158,5 @@ logistic_regression.ipynb
 
 !dvc.lock
 >>>>>>> 922787fc9c4243d7b78bbd1cda8b25e88cf9e055
+uploads/*
+Untitled.ipynb
