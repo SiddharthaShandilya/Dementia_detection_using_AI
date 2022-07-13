@@ -24,7 +24,8 @@ setup(
         'flask',
         'xgboost',
         'bs4',
-        'numpy'
+        'numpy',
+        'tenserflow'
         
     ]
 )
