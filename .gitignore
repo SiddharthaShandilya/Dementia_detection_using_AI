@@ -157,3 +157,4 @@ logistic_regression.ipynb
 
 !dvc.lock
 >>>>>>> 922787fc9c4243d7b78bbd1cda8b25e88cf9e055
+uploads/*
