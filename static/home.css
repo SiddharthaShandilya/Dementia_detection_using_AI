@@ -1,17 +1,29 @@
 h1 {
-    color: rgb(241, 210, 33);
+    color: rgb(10, 10, 9);
   }
-
+  
+  div.scroll {
+    margin: 4px, 4px;
+    padding: 4px;
+    background-color: rgb(230, 254, 255);
+    width: auto;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    text-align: justify;
+  }
   body {
     margin: 30;
     padding: 30;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
+    text-align: center;
     align-items: center;
-    height: 100%;
-    background: linear-gradient(45deg, rgb(255, 200, 47), rgba(238, 216, 94, 0.774));
-    font-family: "Sansita Swashed", cursive;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(45deg, rgb(248, 252, 255), rgb(241, 245, 247));
+    font-family: 'Noto Serif', serif;
   }
   .center {
     position: relative;
@@ -79,3 +91,13 @@ h1 {
       font-style: initial;
   }
   
+
+  .form{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align:left;
+    background: linear-gradient(45deg, rgb(140, 209, 230), rgb(122, 179, 245));
+    border-radius: 2px;
+  }
