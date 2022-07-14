@@ -79,6 +79,7 @@ stages:
     outs:
       - artifacts/reports_dir/trained_model_graph_dir
       - logs/stage_05_running_logs.log
+      - artifacts/reports_dir/testing_scores.json
 
 
   LAUNCHING_WEB_APPLICATION:
