@@ -38,8 +38,6 @@ artifacts:
   real_data_combined_file: dementia_dataset.csv
   cleaned_real_data_file: Cleaned_Real_Combined_data.csv
   
-   
-
   split_data: 
     split_data_dir: split_data_dir
     train_data_dir: train_data_dir
@@ -62,12 +60,12 @@ artifacts:
   
   reports: 
     reports_dir: reports_dir
-    scores: scores.json
-    testing_scores: testing_scores.json
+    scores: scores.json                   # file name containing scores for the model training
+    testing_scores: testing_scores.json   # the file name fo rthe scores of the loaded model on test data
     
     graphs:
       graphs_dir: graphs_dir
-      trained_model_graph_dir: trained_model_graph_dir
+      trained_model_graph_dir: trained_model_graph_dir 
 
 web_app:
   upload_folder: uploads  #here we will upload a the image for DL model prediction
