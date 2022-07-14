@@ -127,11 +127,11 @@ def aqt_predict():
         
         if (y_pred[0] == 1):
             print("True == ",y_pred)
-            return " Person is demented and need medical attention"
+            #return " Person is demented and need medical attention"
+            return render_template("deep-lrn.html")
         
         print("False == ",y_pred)
         return " person in not demetned"
-        
 
 
 #-------------------------------------------------------------------------------
