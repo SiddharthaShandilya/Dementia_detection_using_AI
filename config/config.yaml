@@ -63,6 +63,7 @@ artifacts:
   reports: 
     reports_dir: reports_dir
     scores: scores.json
+    testing_scores: testing_scores.json
     
     graphs:
       graphs_dir: graphs_dir
