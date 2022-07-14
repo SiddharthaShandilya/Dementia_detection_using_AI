@@ -6,31 +6,16 @@ stages:
       - src/stage_01_retrieve_html.py
       - src/utils/all_utils.py
       - config/config.yaml
-      
     outs:
       - artifacts/Data_archive/dementia_dataset/dementia_dataset.csv
       - logs/stage_01_running_logs.log
-
-  #Extracting and combining data:
-  # cmd: python src/stage_02_EDA.py --config config/config.yaml
-  #  deps:
-  #    - src/stage_02_Extract_combine.py
-  #    - src/stage_01_retrieve_html.py
-  #    - src/utils/all_utils.py
-  #    - config/config.yaml
-  #    #- artifacts/data/AQI/aqi2013.csv
-  #    - artifacts/Data_archive/AQI/
-  #    - artifacts/Data_archive/Html_Data
-  #    - requirements.txt      
-  #  outs:
-  #    - artifacts/Data_archive/Real-Data/Real_Combine.csv
 
 
   Exploratory_Data_Analysis:
     cmd: python src/stage_02_EDA.py --config config/config.yaml
     deps:
       - src/stage_02_EDA.py
-    #  - artifacts/Data_archive/Real-Data/Real_Combine.csv
+      - artifacts/Data_archive/dementia_dataset/dementia_dataset.csv
       - src/utils/all_utils.py
       - config/config.yaml
       - requirements.txt
