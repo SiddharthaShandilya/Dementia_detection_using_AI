@@ -6,9 +6,11 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from sklearn.model_selection import RandomizedSearchCV, train_test_split
 import xgboost as xgb
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score, accuracy_score, confusion_matrix
 import logging
 import time
+ 
+
 
 #-------------------------------------------------------------------------------
 #   Creating a looging with timestamp and regex 
@@ -94,6 +96,8 @@ def model_traininig(params, train_data_file_path, scores_filepath):
 
     xgb_random_best_params_  = xgb_random.best_params_
     xgb_random_best_score_  = xgb_random.best_score_
+    y_pred=[0 if i<0.6 else 1 for i in predicted_values]
+    
     
     scores = {
         "xgb_random.best_params_ ": xgb_random_best_params_,
@@ -101,6 +105,7 @@ def model_traininig(params, train_data_file_path, scores_filepath):
         "rmse": rmse,
         "mae": mae,
         "r2": r2,
+        "accuracy_score": accuracy_score(y_test,y_pred),
     }
 
     save_reports(report=scores, report_path=scores_filepath)
