@@ -38,5 +38,5 @@ jobs:
         dvc repro -v ## v >>> verbose
         echo "# REPORTS" >> report.md
         echo "## metrics" >> report.md
-        cat scores.json >> report.md
+        cat artifacts/reports_dir/scores.json >> report.md
         cml-send-comment report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
