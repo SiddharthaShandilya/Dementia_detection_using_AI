@@ -80,15 +80,15 @@ stages:
       - artifacts/reports_dir/trained_model_graph_dir
       - logs/stage_05_running_logs.log
 
-
-  LAUNCHING_WEB_APPLICATION:
-    cmd:  python app.py 
-    deps:
-      - app.py
-      - templates/
-      - artifacts/trained_model/
-      - static/
-      - config/config.yaml
+# cannot use this stage for git hub action
+#  LAUNCHING_WEB_APPLICATION:
+#    cmd:  python app.py 
+#    deps:
+#      - app.py
+#      - templates/
+#      - artifacts/trained_model/
+#      - static/
+#     - config/config.yaml
     
 
   
