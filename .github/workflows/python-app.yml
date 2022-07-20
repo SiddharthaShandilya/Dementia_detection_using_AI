@@ -19,21 +19,46 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    - name: Set up Python 3.10
+    - name: Set up Python 3.7
       uses: actions/setup-python@v3
       with:
-        python-version: "3.10"
+        python-version: "3.7"
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Lint with flake8
+    - name: cml_run
+      env:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
-      run: |
-        pytest
+        # Your ML workflow commands
+        pip install --upgrade pip
+        pip install -r requirements.txt
+        dvc repro -v ## v >>> verbose
+        echo "# REPORTS" >> report.md
+        echo "## metrics" >> report.md
+        cat scores.json >> report.md
+        cml-send-comment report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+
+'''
+
+   model-training:
+    needs: deploy-runner
+    runs-on: [self-hosted, cml-runner]
+    container: docker://iterativeai/cml:0-dvc2-base1
+    steps:
+      - uses: actions/checkout@v2
+      - name: "Train my model"
+        env:
+          repo_token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        run: |
+          # Your ML workflow commands
+          pip install --upgrade pip
+          pip install -r requirements.txt
+          dvc repro -v ## v >>> verbose
+          echo "# REPORTS" >> report.md
+          echo "## metrics" >> report.md
+          cat scores.json >> report.md
+          cml-send-comment report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+'''
