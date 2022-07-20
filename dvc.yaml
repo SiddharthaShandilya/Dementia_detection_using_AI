@@ -30,7 +30,7 @@ stages:
     cmd: python src/stage_02_EDA.py --config config/config.yaml
     deps:
       - src/stage_02_EDA.py
-    #  - artifacts/Data_archive/Real-Data/Real_Combine.csv
+      - artifacts/Data_archive/dementia_dataset/dementia_dataset.csv
       - src/utils/all_utils.py
       - config/config.yaml
       - requirements.txt
