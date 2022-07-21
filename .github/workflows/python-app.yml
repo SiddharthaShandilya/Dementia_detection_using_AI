@@ -39,4 +39,4 @@ jobs:
         echo "# REPORTS" >> report.md
         echo "## metrics" >> report.md
         cat artifacts/reports_dir/scores.json >> report.md
-        cml-send-comment report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+        #cml-send-comment report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
