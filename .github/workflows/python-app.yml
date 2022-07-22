@@ -40,3 +40,21 @@ jobs:
         echo "## metrics" >> report.md
         cat artifacts/reports_dir/scores.json >> report.md
         #cml-send-comment report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
+
+      
+    - uses: actions/checkout@v3
+    - name: docker login
+      env: 
+        DOCKER_USER: ${{secrets.DOCKER_HUB_USER}}
+        DOCKER_PASSWORD: ${{secrets.DOCKERHUB_PASS}}
+        REPO_NAME: ${{secrets.REPO_NAME}}
+      run: |
+        docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+    - name: Get current date # get the date of the build
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d--%M-%S')"
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_HUB_USER}}/${{secrets.REPO_NAME}}:${{steps.date.outputs.date}}
+      
+    - name: Push_Image
+      run: docker push ${{secrets.DOCKER_HUB_USER}}/${{secrets.REPO_NAME}}:${{steps.date.outputs.date}}
