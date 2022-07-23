@@ -18,15 +18,18 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+
     - name: Set up Python 3.7
       uses: actions/setup-python@v3
       with:
         python-version: "3.7"
+    
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install flake8 pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    
     - name: cml_run
       env:
         repo_token: ${{ secrets.GITHUB_TOKEN }}
@@ -41,9 +44,13 @@ jobs:
         #cml-send-comment report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
 
       
+  docker_init:
+    runs-on: ubuntu-latest
+    steps:
     - uses: actions/checkout@v3
+
     - name: docker login
-    - needs: cml_run
+      needs: build
       env: 
         DOCKER_USER: ${{secrets.DOCKER_HUB_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKERHUB_PASS}}
