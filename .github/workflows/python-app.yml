@@ -5,9 +5,9 @@ name: Python application
 
 on:
   push:
-    branches: [ "master" ]
+    branches: [ "git_action_testing" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "git_action_testing" ]
 
 permissions:
   contents: read
@@ -49,7 +49,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: docker login
-      needs: cml_run
+    - needs: cml_run
       env: 
         DOCKER_USER: ${{secrets.DOCKER_HUB_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKERHUB_PASS}}
