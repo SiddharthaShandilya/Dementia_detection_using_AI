@@ -41,7 +41,7 @@ jobs:
         #cml-send-comment report.md ## >> CML COMMAND USE TO COMMENT ON LAST COMMIT
 
       
-    #- uses: actions/checkout@v3
+    - uses: actions/checkout@v3
     - name: docker login
     - needs: cml_run
       env: 
