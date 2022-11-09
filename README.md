@@ -10,7 +10,6 @@
 -->
 The project is about creating a model which predicts whether a person is suffering from dementia or not based on the various data provided by them in the input form
 
-Here are the screenshots of working example on an AWS Linux Instance.
 
 
 <!-- #`oh-my-zsh` with `powerlevel9k` theme and `powerline nerd-font + awesome-config` font with the `Solarized Dark` color theme. 
@@ -82,7 +81,7 @@ In case for anaconda we can use below commands
     conda activate ./env
 ```
 
-5. Activate the virtual env: 👉 [(click Here)](https://www.programshelp.com/help/python/activate_virtual_environment_python_windows_10.html)
+5. In case tou want to Activate the virtual env follow the given instructions: 👉 [(click Here)](https://www.programshelp.com/help/python/activate_virtual_environment_python_windows_10.html)
 
 6. Install all the libraries for the application.
 ```bash
