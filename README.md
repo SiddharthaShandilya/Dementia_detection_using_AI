@@ -8,7 +8,7 @@
 [![CI](https://github.com/athityakumar/colorls/actions/workflows/ruby.yml/badge.svg)](https://github.com/athityakumar/colorls/actions/workflows/ruby.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields)](http://makeapullrequest.com)
 -->
-The project is about creating a model which predicts the flight fare price based on factors like distance, number of stops, total hours of flight as well as the type of seat
+The project is about creating a model which predicts whether a person is suffering from dementia or not based on the various data provided by them in the input form
 
 Here are the screenshots of working example on an AWS Linux Instance.
 
