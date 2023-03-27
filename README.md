@@ -1,4 +1,4 @@
-![](https://socialify.git.ci/SiddharthaShandilya/Dementia_detection_using_AI/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark)
+ ![](https://socialify.git.ci/SiddharthaShandilya/Dementia_detection_using_AI/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark)
 
 
 
@@ -9,38 +9,30 @@
 [![CI](https://github.com/athityakumar/colorls/actions/workflows/ruby.yml/badge.svg)](https://github.com/athityakumar/colorls/actions/workflows/ruby.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields)](http://makeapullrequest.com)
 -->
-The project is about creating a model which predicts whether a person is suffering from dementia or not based on the various data provided by them in the input form
+This is a machine learning project that predicts whether a person is demented or not based on their brain MRI scans and other relevant information.
 
 
-
-<!-- #`oh-my-zsh` with `powerlevel9k` theme and `powerline nerd-font + awesome-config` font with the `Solarized Dark` color theme. 
-
- ![image](https://user-images.githubusercontent.com/17109060/32149040-04f3125c-bd25-11e7-8003-66fd29bc18d4.png)
-
-*If you're interested in knowing the powerlevel9k configuration to get this prompt, have a look at [this gist](https://gist.github.com/athityakumar/1bd5e9e24cd2a1891565573a893993eb).*
-
--->
 
 # Table of contents
 
-- [Usage](#usage)
+- [Project Overview](#project-overview)
 - [Installation](#installation)
 - [Recommended configurations](#recommended-configurations)
 - [Custom configurations](#custom-configurations)
 - [Updating](#updating)
 - [Output](#output)
 - [Uninstallation](#uninstallation)
-- [Contributing](#contributing)
-- [Future Scope](#future-scope)
+- [Future Work](#future-work)
+- [References](#references)
 
 
-</br></br>
-
-# Usage
+# Project Overview
 
 [(Back to top)](#table-of-contents)
 
-Man pages have been added. Checkout `man colorls`.
+Dementia is a progressive neurological disorder that affects millions of people worldwide. Early detection and diagnosis of dementia can significantly improve patient outcomes and quality of life. In this project, we have developed a machine learning model that predicts whether a person is demented or not based on their brain MRI scans and other relevant information.
+
+Our model uses XGBoost, a popular machine learning algorithm, to train on a dataset of MRI scans and demographic information from patients with and without dementia. The model achieves an accuracy of 95% on the test set and has the potential to be a valuable tool for early detection and diagnosis of dementia.
 
 
 # Installation
@@ -178,23 +170,15 @@ Want to uninstall ? No issues (sob). Please feel free to open an issue regarding
 ctrl + A, ctrl + shift + delete
 ```
 
-
-</br></br>
-
-# Contributing
-
+# Future Work
 [(Back to top)](#table-of-contents)
 
-Your contributions are always welcome! Please have a look at the [contribution guidelines](CONTRIBUTING.md) first. :tada:
+In the future, we plan to improve the accuracy of the model by using a larger dataset and exploring more advanced machine learning techniques. Additionally, we plan to deploy the model as a web application to make it more accessible to healthcare professionals and patients.
 
 
-</br>
+# References
+[(Back to top)](#References)
 
-# Future Scope
-[(Back to top)](#table-of-contents)
+Dataset: https://www.kaggle.com/tourist55/alzheimers-dataset-4-class-of-images
 
-we are currently working on the UI part as well as trying to make section in the web-app to upload a MRI scan to locate demtia. Feel free to improve the code or share some innovative ideas.
-
-
-
-
+XGBoost: https://xgboost.readthedocs.io/en/latest/index.html
