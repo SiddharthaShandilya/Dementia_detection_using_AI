@@ -1,4 +1,5 @@
-# Dementia_detection_using_AI
+![](https://socialify.git.ci/SiddharthaShandilya/Dementia_detection_using_AI/image?description=1&font=Inter&forks=1&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Dark)
+
 
 
 [![forthebadge](https://forthebadge.com/images/badges/built-by-developers.svg)](http://forthebadge.com)   [![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](http://forthebadge.com)      [![forthebadge](https://forthebadge.com/images/badges/60-percent-of-the-time-works-every-time.svg)](https://forthebadge.com)
@@ -8,9 +9,8 @@
 [![CI](https://github.com/athityakumar/colorls/actions/workflows/ruby.yml/badge.svg)](https://github.com/athityakumar/colorls/actions/workflows/ruby.yml)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=shields)](http://makeapullrequest.com)
 -->
-The project is about creating a model which predicts the flight fare price based on factors like distance, number of stops, total hours of flight as well as the type of seat
+The project is about creating a model which predicts whether a person is suffering from dementia or not based on the various data provided by them in the input form
 
-Here are the screenshots of working example on an AWS Linux Instance.
 
 
 <!-- #`oh-my-zsh` with `powerlevel9k` theme and `powerline nerd-font + awesome-config` font with the `Solarized Dark` color theme. 
@@ -82,7 +82,7 @@ In case for anaconda we can use below commands
     conda activate ./env
 ```
 
-5. Activate the virtual env: 👉 [(click Here)](https://www.programshelp.com/help/python/activate_virtual_environment_python_windows_10.html)
+5. In case tou want to Activate the virtual env follow the given instructions: 👉 [(click Here)](https://www.programshelp.com/help/python/activate_virtual_environment_python_windows_10.html)
 
 6. Install all the libraries for the application.
 ```bash

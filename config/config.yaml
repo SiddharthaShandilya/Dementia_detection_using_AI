@@ -38,6 +38,7 @@ artifacts:
   
   reports: 
     reports_dir: reports_dir
+    reports_sheet: result_data.csv
     scores: scores.json
     
     graphs:
