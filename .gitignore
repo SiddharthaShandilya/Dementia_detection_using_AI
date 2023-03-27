@@ -161,3 +161,4 @@ src/utils/model_test.py
 .dvc/tmp/links/cache.db
 .dvc/tmp/md5s/cache.db
 artifacts/Data_archive/alzheimers_dataset/*
+artifacts/reports_dir/result_data.csv
