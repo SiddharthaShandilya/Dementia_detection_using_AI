@@ -15,12 +15,17 @@ import time
 
 def read_yaml(path_to_yaml: str) -> dict:
     '''
-    read_yaml takes String as input and gives Dictionary as output
+    Reads a YAML file and returns its contents as a dictionary.
 
     Parameters
     ----------
-    INPUT : path_to_yaml || String
-    OUTPUT : content || Dictionary
+    path_to_yaml : str
+        The path to the YAML file.
+
+    Returns
+    -------
+    dict
+        The contents of the YAML file as a dictionary.
     '''
     with open(path_to_yaml) as yaml_file:
         content = yaml.safe_load(yaml_file)
@@ -32,14 +37,21 @@ def read_yaml(path_to_yaml: str) -> dict:
 
 def error_value(model, X_test, y_test):
     '''
-    error_value will take the trained model as well as the X_test and y_test values and find thir MAE, MSE, RMSE
-    
+    Calculates the Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root
+    Mean Squared Error (RMSE) of a trained model using a test dataset.
+
     Parameters
     ----------
-    Input : Model : Trained model, 
-            X_test : Dataset,
-            y_test : Dataset
-    Output : The MAE, MSE, RMSE values will be rewrite in the Logging file
+    model : object
+        The trained model.
+    X_test : array-like
+        The test dataset.
+    y_test : array-like
+        The target values for the test dataset.
+
+    Returns
+    -------
+    None
     '''
     prediction = model.predict(X_test)        
     logging.info(f"MAE: { metrics.mean_absolute_error(y_test, prediction)}" )
@@ -52,12 +64,16 @@ def error_value(model, X_test, y_test):
 
 def create_directory(dirs: list):
     '''
-    Create_directory will allow the user to create directory 
-    
+    Creates one or more directories.
+
     Parameters
     ----------
-    Input : Take list as input containing Directories name
-    Output : The mentioned directories will be created
+    dirs : list
+        A list of directory names to be created.
+
+    Returns
+    -------
+    None
     '''
     for dir_path in dirs:
         os.makedirs(dir_path, exist_ok=True)
@@ -69,13 +85,20 @@ def create_directory(dirs: list):
 
 def save_local_df(data, data_path, index_status=False):
     '''
-    save_local_df will allow the user to save their data to their csv file in their designated location mentioned in data_path
-    
+    Saves a Pandas DataFrame to a CSV file.
+
     Parameters
     ----------
-    INPUT : data,
-            data_path(location of data to be stored)
-    Output : New data is saved in the mentioned location in csv format
+    data : Pandas DataFrame
+        The data to be saved.
+    data_path : str
+        The path to the file where the data will be saved.
+    index_status : bool, optional
+        Whether to include the index column in the saved data. The default is False.
+
+    Returns
+    -------
+    None
     '''
     data.to_csv(data_path, index=index_status)
     logging.info(f"data is saved at {data_path}")
@@ -86,15 +109,22 @@ def save_local_df(data, data_path, index_status=False):
 
 def save_reports(report: dict, report_path: str, indentation=4):
     '''
-    save_reports allows users to save their reports at their designated location as mentioned in the report_path variable
-    
+    Saves a dictionary as a JSON file.
+
     Parameters
     ----------
-    INPUT : report : varible storing the reports  || DICT,
-            report_path : location to store the reports || STRING,
-            indentation :allows better readibility
-    Output : The reports are saved at the mentioned location
+    report : dict
+        The dictionary to be saved.
+    report_path : str
+        The path to the file where the dictionary will be saved.
+    indentation : int, optional
+        The number of spaces to use for indentation in the saved JSON file. The default is 4.
+
+    Returns
+    -------
+    None
     '''
+
     with open(report_path, "w") as f:
         json.dump(report, f, indent=indentation)
     logging.info(f"reports are saved at {report_path}")
@@ -102,14 +132,19 @@ def save_reports(report: dict, report_path: str, indentation=4):
 #   fetch_reports
 #-------------------------------------------------------------------------------
 def fetch_reports(report_path: str):
-    '''
-    fetch_report allows users to fetch report saved at the location mentioned in the report_path variable
-    
+    """
+    Load the report from the specified path.
+
     Parameters
     ----------
-    INPUT : report_path : STRING 
-    OUTPUT : report : JSON format 
-    '''
+    report_path : str
+        The path to the report file in JSON format.
+
+    Returns
+    -------
+    dict
+        A dictionary containing the report data.
+    """
     with open(report_path, "w") as f:
         report = json.load(f)
     logging.info(f"reports are loaded from {report_path}")
@@ -120,17 +155,22 @@ def fetch_reports(report_path: str):
 #-------------------------------------------------------------------------------
 
 def save_model(model_dir_path: list, model, model_filename):
-    '''
-    save_model allows user to save a trained model to a given location
-    
+    """
+    Save a trained model to a specified location.
+
     Parameters
     ----------
-    INPUT : model_dir_path : containg list of directories/location, 
-            model : trained model, 
-            model_filename: Name of the model
-    OUTPUT : model is saved at the given location with the specified model file name
-    
-    '''
+    model_dir_path : str
+        The path to the directory where the model will be saved.
+    model : object
+        The trained model object.
+    model_filename : str
+        The filename to be used for the saved model.
+
+    Returns
+    -------
+    None
+    """
     create_directory([model_dir_path])
     model_path = os.path.join(model_dir_path, model_filename)
     joblib.dump(model, model_path)
@@ -140,14 +180,19 @@ def save_model(model_dir_path: list, model, model_filename):
 #   Loading_model
 #-------------------------------------------------------------------------------
 def load_model(model_file_path):
-    '''
-    load_model allows user to load a pretrained model stored locally in the mentioned location
-    
+    """
+    Load a pretrained model from a specified location.
+
     Parameters
     ----------
-    INPUT : location of the pretrained model
-    OUTPUT : the pretrained model will be loaded
-    '''
+    model_file_path : str
+        The path to the pretrained model file.
+
+    Returns
+    -------
+    object
+        The pretrained model object.
+    """
     model = joblib.load(model_file_path)
     logging.info("{} file is loaded".format(model_file_path))
     return model
@@ -157,14 +202,19 @@ def load_model(model_file_path):
 #   time_stamp
 #-------------------------------------------------------------------------------
 def get_timestamp(name):
-    '''
-    it will create a unique name using the timestamp 
+    """
+    Generate a unique name using a timestamp.
 
     Parameters
     ----------
-    INPUT : Name || String
-    OUTPUT : unique_name || String
-    '''
+    name : str
+        The name to be used in the generated unique name.
+
+    Returns
+    -------
+    str
+        A unique name generated using a timestamp.
+    """
     timestamp = time.asctime().replace(" ", "_").replace(":", "_")
     unique_name = f"{name}_at_{timestamp}"
     return unique_name
