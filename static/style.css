@@ -1,0 +1,74 @@
+body {
+  background-color: #f1abce;
+}
+
+h2 {
+  color: #3d0e3d;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 36px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.container {
+  background-color: #f5e7e7;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  margin: 50px auto;
+  max-width: 600px;
+  padding: 20px;
+}
+
+.form-group {
+  margin: 20px 0;
+}
+
+label {
+  color: #573280;
+  display: inline-block;
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  background-color: #f8f3f3;
+  border: none;
+  border-radius: 5px;
+  color: #3d0e3d;
+  font-size: 16px;
+  padding: 10px;
+  width: 100%;
+}
+
+input[type="submit"] {
+  background-color: #ffa500;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  font-size: 18px;
+  margin-top: 20px;
+  padding: 10px 20px;
+}
+
+input[type="submit"]:hover {
+  background-color: #ff6347;
+}
+
+select {
+  margin-left: 10px;
+  width: 100%;
+}
+
+/* Form Validation Styling */
+input:invalid,
+select:invalid {
+  border-color: #cc0000;
+}
+
+input:valid,
+select:valid {
+  border-color: #00cc00;
+}
