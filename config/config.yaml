@@ -40,6 +40,7 @@ artifacts:
     reports_dir: reports_dir
     reports_sheet: result_data.csv
     scores: scores.json
+    database_name: model_pred_collection.db
     
     graphs:
       graphs_dir: graphs_dir
